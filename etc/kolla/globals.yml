@@ -5,3 +5,10 @@ yum_repo_host: '10.0.35.21'
 pip_repo_host: '10.0.35.21'
 
 docker_registry: '10.0.35.21'
+
+external_ntp_servers:
+  - 0.pool.ntp.org
+  - 1.pool.ntp.org
+  - 2.pool.ntp.org
+  - 3.pool.ntp.org
+

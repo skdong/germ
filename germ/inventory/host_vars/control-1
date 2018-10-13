@@ -1,0 +1,5 @@
+##################
+# ceph osd devices
+##################
+# set ceph osd devices
+osd_devices: []
