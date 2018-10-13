@@ -1,0 +1,12 @@
+---
+
+- name: genrate private key file
+  hosts: localhost
+  vars_files:
+    - /home/kolla/dire/germ/etc/kolla/passwords.yml
+  gather_facts: no
+  tasks:
+    - blockinfile:
+        path: /home/kolla/dire/germ/etc/kolla/id_rsa
+        content: '{{kolla_ssh_key.private_key }}'
+        create: True
