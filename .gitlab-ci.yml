@@ -1,0 +1,12 @@
+---
+stages:
+  - print
+
+job:
+  stage: print
+  script:
+    - echo "172.28.0.4  deploy.mydomain.com" >> /etc/hosts
+  tags: 
+  except:
+    - tags
+  image: ubuntu:16.04
