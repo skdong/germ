@@ -5,6 +5,8 @@ stages:
 job:
   stage: print
   script:
+    - ls
+  before_script:
     - echo "172.28.0.4  deploy.mydomain.com" >> /etc/hosts
   tags: 
   except:
