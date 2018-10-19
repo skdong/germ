@@ -1,8 +1,8 @@
 ---
 stages:
-  - build
+  - print
 job:
-  stage: build
+  stage: print
   before_script:
     - ls
   script:
