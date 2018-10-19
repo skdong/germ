@@ -13,3 +13,6 @@ job:
   except:
     - tags
   image: ubuntu:16.04
+
+variables:
+  GIT_STRATEGY: none
