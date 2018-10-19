@@ -12,7 +12,7 @@ job:
   tags: 
   except:
     - tags
-  image: dire/ansible_tools
+  image: dire/ansible_tools:latest
 
 variables:
   GIT_STRATEGY: none
