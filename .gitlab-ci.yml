@@ -9,7 +9,7 @@ job:
   before_script:
     - echo "172.28.0.4  deploy.mydomain.com" >> /etc/hosts
     - mkdir -p /builds/dire/germ
-    - ip a
+    - ifconfig
   tags: 
   except:
     - tags
