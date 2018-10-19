@@ -12,7 +12,7 @@ job:
   tags: 
   except:
     - tags
-  image: ubuntu:16.04
+  image: dire/ansible_tools
 
 variables:
   GIT_STRATEGY: none
