@@ -3,6 +3,8 @@ stages:
   - build
 job:
   stage: build
+  before_script:
+    - ls
   script:
     - ls
   tags: 
