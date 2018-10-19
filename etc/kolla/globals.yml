@@ -12,3 +12,7 @@ external_ntp_servers:
   - 2.pool.ntp.org
   - 3.pool.ntp.org
 
+name_servers:
+  - 114.114.114.114
+
+yum_repo_url: 'http://{{yum_repo_host}}/repository/yum-test'

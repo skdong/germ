@@ -1,0 +1,17 @@
+stages:
+
+- build
+
+job:
+
+stage: build
+
+script:
+
+- ls
+
+tags: 
+
+except:
+
+- tags
