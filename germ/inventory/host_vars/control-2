@@ -16,8 +16,6 @@ network_bond_interfaces:
     bootproto: static
     bond_mode: 802.3ad
     bond_miimon: 100
-    bond_slaves: [ens256, ens224]
-    address: 192.168.10.19
-    netmask: 255.255.255.0
+    bond_slaves: []
 
 network_interface: eno16780032
