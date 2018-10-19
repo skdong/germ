@@ -1,10 +1,12 @@
 ---
 stages:
   - print
+
+before_script:
+  - ls
+
 job:
   stage: print
-  before_script:
-    - ls
   script:
     - ls
   tags: 
