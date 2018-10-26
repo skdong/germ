@@ -2,29 +2,25 @@
 # ceph osd devices
 ##################
 # set ceph osd devices
-osd_devices: []
+osd_devices:
+    - sdb
 
 
 ################
 # network option
 ################
 network_ether_interfaces:
+  - device: ens160
+    bootproto: static
+    address: 10.0.35.22
+    netmask: 255.255.255.0
+    gateway: 10.0.35.254
   - device: ens192
     bootproto: manual
-  - device: ens224
-    bootproto: manual
-
-network_bond_interfaces:
-  - device: bond0
-    bootproto: static
-    bond_mode: 802.3ad
-    bond_miimon: 100
-    bond_slaves: [ens192, ens224]
-    address: 192.168.10.18
-    netmask: 255.255.255.0
 
 
 ##############
 # kolla option
 ##############
 api_interface: ens160
+neutron_external_interface: ens192

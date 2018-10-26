@@ -16,3 +16,5 @@ name_servers:
   - 114.114.114.114
 
 yum_repo_url: 'http://{{yum_repo_host}}/repository/yum-test'
+
+reset_network_force: true
