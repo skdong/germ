@@ -1,0 +1,24 @@
+---
+- name: include options
+  hosts:
+    - all
+  tasks:
+    - inlcude_vars: '{{ item }}'
+      with_items:
+        - '../etc/globals.yml'
+        - '../etc/passwords.yml'
+
+- name: run init play book
+  import_playbook: /home/kolla/dire/steam/ansible/sit.yml
+
+- name: include options
+  hosts:
+    - all
+  tasks:
+    - inlcude_vars: '{{ item }}'
+    with_items:
+      - '../etc/auth.yml'
+      - '{{cluster_type}}/etc/all.yml'
+
+- name: run cluster play book
+  import_playbook:  '{{cluster_type}}/sit.yml'

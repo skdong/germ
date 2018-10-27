@@ -31,49 +31,12 @@
       when:
         - (ansible_play_batch | length) != (groups['all'] | length)
 
-- name: Detect openstack_release variable
-  hosts: all
-  gather_facts: false
-  tasks:
-    - name: Get current kolla-ansible version number
-      local_action: command python -c "import pbr.version; print(pbr.version.VersionInfo('kolla-ansible'))"
-      register: kolla_ansible_version
-      changed_when: false
-      when: openstack_release == "auto"
-
-    - name: Set openstack_release variable
-      set_fact:
-        openstack_release: "{{ kolla_ansible_version.stdout }}"
-      when: openstack_release == "auto"
-  tags: always
-
 - name: Apply role prechecks
   gather_facts: false
   hosts:
     - all
   roles:
     - role: prechecks
-      when: action == "precheck"
-
-- name: Apply role chrony
-  gather_facts: false
-  hosts:
-    - chrony-server
-    - chrony
-  serial: '{{ serial|default("0") }}'
-  roles:
-    - { role: chrony,
-        tags: chrony,
-        when: enable_chrony | bool }
-
-- name: Apply role collectd
-  gather_facts: false
-  hosts: collectd
-  serial: '{{ serial|default("0") }}'
-  roles:
-    - { role: collectd,
-        tags: collectd,
-        when: enable_collectd | bool }
 
 - name: Apply role elasticsearch
   gather_facts: false
@@ -83,25 +46,6 @@
     - { role: elasticsearch,
         tags: elasticsearch,
         when: enable_elasticsearch | bool }
-
-- name: Apply role influxdb
-  gather_facts: false
-  hosts: influxdb
-  serial: '{{ serial|default("0") }}'
-  roles:
-    - { role: influxdb,
-        tags: influxdb,
-        when: enable_influxdb | bool }
-
-- name: Apply role telegraf
-  gather_facts: false
-  hosts:
-    - telegraf
-  serial: '{{ serial|default("0") }}'
-  roles:
-    - { role: telegraf,
-        tags: telegraf,
-        when: enable_telegraf | bool }
 
 - name: Apply role redis
   gather_facts: false
