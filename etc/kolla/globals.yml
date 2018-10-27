@@ -1,10 +1,13 @@
 ---
+deploy_ip: '10.0.35.21'
+deploy_host: 'deploy.mydomain.com'
+
 certs_repo_host: '10.0.35.21'
 apt_repo_host: '10.0.35.21'
 yum_repo_host: '10.0.35.21'
 pip_repo_host: '10.0.35.21'
 
-docker_registry: '10.0.35.21'
+#docker_registry: '10.0.35.21'
 
 external_ntp_servers:
   - 0.pool.ntp.org
