@@ -2,23 +2,28 @@
 - name: include options
   hosts:
     - all
+  tags: always
   tasks:
-    - inlcude_vars: '{{ item }}'
+    - include_vars: '{{ item }}'
       with_items:
-        - '../etc/globals.yml'
-        - '../etc/passwords.yml'
+        - '../etc/kolla/globals.yml'
+        - '../etc/kolla/passwords.yml'
 
 - name: run init play book
+  tags: init
   import_playbook: /home/kolla/dire/steam/ansible/sit.yml
 
 - name: include options
   hosts:
     - all
+  tags: cluster
   tasks:
-    - inlcude_vars: '{{ item }}'
-    with_items:
-      - '../etc/auth.yml'
-      - '{{cluster_type}}/etc/all.yml'
+    - include_vars: '{{ item }}'
+      with_items:
+        - '../etc/kolla/auth.yml'
+        - '{{ cluster_type }}/etc/globals.yml'
 
-- name: run cluster play book
-  import_playbook:  '{{cluster_type}}/sit.yml'
+    - shell: 'ip a'
+
+    - name: run cluster play book
+      import_playbook:  '{{ cluster_type }}/sit.yml'

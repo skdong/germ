@@ -1,9 +1,4 @@
 # These initial groups are the only groups required to be modified. The
-#[all]
-#control-1 ansible_host=10.0.35.22  ansible_user=dire
-#control-2 ansible_host=10.0.35.41  ansible_user=dire
-#control-3 ansible_host=10.0.35.42  ansible_user=dire
-#compute-1 ansible_host=10.0.35.43  ansible_user=dire
 
 # additional groups are for more control of the environment.
 [control]
@@ -30,6 +25,7 @@ control-3
 # outside
 [external-compute]
 compute-1
+compute-2
 
 [compute:children]
 inner-compute
@@ -49,7 +45,7 @@ control-2
 control-3
 
 [deployment]
-localhost       ansible_connection=local
+#localhost       ansible_connection=local
 
 [baremetal:children]
 control
