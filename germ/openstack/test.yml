@@ -1,0 +1,28 @@
+---
+- name: test
+  hosts:
+    - all
+  tasks:
+    - shell: 'which python'
+      register: python_state
+      ignore_errors: yes
+
+    - shell: 'which python3'
+      register: python3_state
+      ignore_errors: yes
+
+    - shell: 'echo a'
+      when: 
+        - python_state.rc == 1
+
+    - fail: 
+        msg: 'test print'
+      when: 
+        - python_state.rc != 0
+        - python3_state.rc != 0
+      
+    - fail: 
+        msg: 'test failed print'
+      when: 
+        - python_state
+        - python3_state

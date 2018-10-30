@@ -22,5 +22,5 @@ network_ether_interfaces:
 ##############
 # kolla option
 ##############
-api_interface: ens160
+network_interface: ens160
 neutron_external_interface: ens192

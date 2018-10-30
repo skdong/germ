@@ -1,0 +1,23 @@
+---
+- name: include options
+  hosts:
+    - all
+  tags: always
+  tasks:
+    - include_vars: '{{ item }}'
+      with_items:
+        - '../etc/kolla/passwords.yml'
+        - '../etc/kolla/globals.yml'
+
+- name: include options
+  hosts:
+    - all
+  tags: always
+  become: true
+  tasks:
+    - include_vars: '{{ item }}'
+      with_items:
+        - '../etc/kolla/auth.yml'
+
+- import_playbook: openstack/recovery.yml
+  when: cluster_type == 'openstack'

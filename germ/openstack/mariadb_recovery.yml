@@ -7,6 +7,7 @@
   tasks:
     - include_vars: etc/globals.yml
 
-- import_playbook: pre-play.yml
+    - setup:
 
-- import_playbook: /home/kolla/dire/kolla-ansible/ansible/site.yml
+- import_playbook: /home/kolla/dire/kolla-ansible/ansible/mariadb_recovery.yml
+

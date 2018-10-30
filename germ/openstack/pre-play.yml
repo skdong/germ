@@ -1,0 +1,19 @@
+---
+- name: Precheck
+  gather_facts: false
+  hosts:
+    - network
+    - compute
+  become: true
+  tasks:
+    - name: check options
+      fail:
+        msg: "neutron bridge number not equal neutron physical nets num"
+      when: neutron_bridge_name.split(',') | length != physnets.split(',') | length
+
+    - name: check options
+      fail:
+        msg: "neutron bridge number not equal external interfaces num"
+      when: neutron_bridge_name.split(',') | length != neutron_external_interface.split(',') | length
+
+

@@ -1,0 +1,13 @@
+---
+#- import_playbook: /home/kolla/dire/kolla-ansible/ansible/destroy.yml
+
+- name: clean directory
+  become: true
+  hosts:
+    - control
+    - compute
+  tasks:
+    - file:
+        path: '{{ node_config_directory }}'
+        state: absent
+      

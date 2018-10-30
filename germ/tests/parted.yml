@@ -1,0 +1,19 @@
+---
+- name: test
+  hosts:
+    - all
+  become: true
+  tasks:
+    - parted:
+        device: '/dev/sdc'
+        state: 'info'
+      register: result
+    
+    - name: parte osd
+      parted:
+        device: '/dev/sdc'
+        label: 'gpt'
+        name: 'KOLLA_CEPH_OSD_BOOTSTRAP'
+        state: present
+        number: 1
+      when: result.partitions | length == 0

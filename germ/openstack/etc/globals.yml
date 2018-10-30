@@ -18,7 +18,7 @@ kolla_base_distro: "ubuntu"
 #kolla_install_type: "binary"
 
 # Valid option is Docker repository tag
-openstack_release: "queen"
+openstack_release: "queens"
 
 # Location of configuration overrides
 #node_custom_config: "/etc/kolla/config"
@@ -46,16 +46,18 @@ kolla_internal_vip_address: "10.0.35.50"
 # kolla_external_vip_address.
 #kolla_external_fqdn: "{{ kolla_external_vip_address }}"
 
+
 ################
 # Docker options
 ################
 # Below is an example of a private repository with authentication. Note the
 # Docker registry password can also be set in the passwords.yml file.
 
-#docker_registry: "172.16.0.10:4000"
-#docker_namespace: "companyname"
-#docker_registry_username: "sam"
-#docker_registry_password: "correcthorsebatterystaple"
+docker_registry: "{{deploy_host}}"
+docker_namespace: "kolla"
+docker_registry_username: "admin"
+docker_registry_password: "admin123"
+
 
 ###################
 # Messaging options
@@ -146,7 +148,7 @@ enable_ceph: "yes"
 #enable_ceph_mds: "no"
 enable_ceph_rgw: "yes"
 #enable_ceph_nfs: "no"
-enable_chrony: "no"
+enable_chrony: "yes"
 enable_cinder: "yes"
 #enable_cinder_backup: "yes"
 #enable_cinder_backend_hnas_iscsi: "no"
@@ -422,3 +424,27 @@ tempest_floating_network_name:
 #xenserver_himn_ip:
 #xenserver_username:
 #xenserver_connect_protocol:
+
+############################
+# dire import kolla playbook
+###########################
+
+project: ''
+config_owner_user: "dire"
+config_owner_group: "dire"
+node_custom_config: "/etc/dire/config"
+node_config_directory: "/etc/dire/{{ project }}"
+action: "deploy"
+
+has_cluster: false
+use_preconfigured_databases: false
+database:
+  changed: false
+map_cell0:
+  changed: false
+delegate_host: ''
+gnocchi_base_distro: 'centos'
+
+physnets: physnet1
+neutron_bridge_name: br-ex
+
