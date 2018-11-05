@@ -9,5 +9,8 @@
 
     - include_vars: etc/all.yml
 
+- name: pre deploy
+  import_playbook: pre-deploy.yml
+
 - name: import deploy playbook
   import_playbook: deploy.yml

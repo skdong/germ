@@ -28,6 +28,8 @@ local_release_dir: "/tmp/releases"
 # Random shifts for retrying failed ops like pushing/downloading
 retry_stagger: 5
 
+disable_swap: true
+
 # This is the group that the cert creation scripts chgrp the
 # cert files to. Not really changeable...
 kube_cert_group: kube-cert
@@ -170,7 +172,7 @@ efk_enabled: false
 
 # Helm deployment
 helm_enabled: true
-helm_stable_repo_url: "http://192.168.0.10:8080"
+helm_stable_repo_url: "http://10.0.35.21/repository/helm/"
 helm_version: "v2.9.1"
 
 # Istio deployment

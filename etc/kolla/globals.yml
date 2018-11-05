@@ -7,6 +7,8 @@ apt_repo_host: '10.0.35.21'
 yum_repo_host: '10.0.35.21'
 pip_repo_host: '10.0.35.21'
 
+docker_registry: "{{deploy_host}}"
+
 external_ntp_servers:
   - 0.pool.ntp.org
   - 1.pool.ntp.org
