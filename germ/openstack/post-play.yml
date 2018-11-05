@@ -1,34 +1,10 @@
 ---
-- name: Apply role gnocchi
-  gather_facts: false
+- name: include options
   hosts:
-    - neutron-server
-    - neutron-dhcp-agent
-    - neutron-l3-agent
-    - neutron-lbaas-agent
-    - neutron-metadata-agent
-    - neutron-vpnaas-agent
-    - compute
-    - manila-share
+    - localhost
+  tags: always
   become: true
   tasks:
-    - ini_file:
-        path: "{{ node_config_directory }}/{{ item }}/ml2_conf.ini"
-        section: "ml2_type_vlan"
-        option: "network_vlan_ranges"
-        value: "{{ physnets }}"
-      when: inventory_hostname in groups[item]
-      with_items:
-        - "neutron-openvswitch-agent"
-        - "neutron-server"
+    - include_vars: etc/globals.yml
 
-    - ini_file:
-        path: "{{ node_config_directory }}/{{ item }}/ml2_conf.ini"
-        section: "ovs"
-        option: "bridge_mappings"
-        value: "{% for bridge in neutron_bridge_name.split(',') %} {{ physnets.split(',')[loop.index0] }}:{{ bridge }}{% if not loop.last %},{% endif %}{% endfor %}"
-      when: inventory_hostname in groups[item]
-      with_items:
-        - "neutron-openvswitch-agent"
-        - "neutron-server"
-
+- import_playbook: /home/kolla/dire/kolla-ansible/ansible/post-deploy.yml

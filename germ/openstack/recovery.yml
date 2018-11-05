@@ -7,7 +7,5 @@
   tasks:
     - include_vars: etc/globals.yml
 
-    - setup:
-
 - import_playbook: mariadb_recovery.yml
 

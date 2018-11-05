@@ -2,16 +2,12 @@
 - name: include options
   hosts:
     - all
-    - localhost
   tags: always
   tasks:
     - include_vars: '{{ item }}'
       with_items:
         - '../etc/kolla/passwords.yml'
         - '../etc/kolla/globals.yml'
-
-#- name: run init play book
-#  import_playbook: /home/kolla/dire/steam/ansible/site.yml
 
 - name: include options
   hosts:
