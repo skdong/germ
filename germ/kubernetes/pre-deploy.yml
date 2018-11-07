@@ -1,0 +1,12 @@
+---
+- hosts: k8s-cluster
+  become: true
+  roles:
+    - { role: preinstall }
+
+
+- hosts: k8s-cluster
+  become: true
+  tasks:
+    - setup:
+

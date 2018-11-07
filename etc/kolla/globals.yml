@@ -7,7 +7,7 @@ apt_repo_host: '10.0.35.21'
 yum_repo_host: '10.0.35.21'
 pip_repo_host: '10.0.35.21'
 
-#docker_registry: '10.0.35.21'
+docker_registry: "{{deploy_host}}"
 
 external_ntp_servers:
   - 0.pool.ntp.org
@@ -18,8 +18,8 @@ external_ntp_servers:
 name_servers:
   - 114.114.114.114
 
-yum_repo_url: 'http://{{yum_repo_host}}/repository/yum-test'
+yum_repo_url: 'http://{{yum_repo_host}}/repository/yum'
 
 reset_network_force: true
 
-cluster_type: 'openstack'
+cluster_type: 'kubernetes'

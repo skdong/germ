@@ -1,0 +1,16 @@
+---
+- name: include options
+  hosts:
+    - all
+  tags: always
+  become: true
+  tasks:
+    - include_vars: etc/globals.yml
+
+    - include_vars: etc/all.yml
+
+- name: pre deploy
+  import_playbook: pre-deploy.yml
+
+- name: import deploy playbook
+  import_playbook: deploy.yml

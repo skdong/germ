@@ -23,6 +23,10 @@
       with_items:
         - '../etc/kolla/auth.yml'
 
-- name: run test
-  import_playbook: openstack/site.yml
-  when: cluster_type == 'openstack'
+#- name: run openstack playbook
+#  import_playbook: openstack/site.yml
+#  when: cluster_type == 'openstack'
+
+- name: run kubernetes playbook
+  import_playbook: kubernetes/site.yml
+  when: cluster_type == 'kubernetes'

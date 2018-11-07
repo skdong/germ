@@ -1,23 +1,17 @@
 [all]
-control-1 ansible_host=10.0.35.22  ansible_user=kolla ansible_password=kolla ansible_sudo_pass=kolla
-control-2 ansible_host=10.0.35.41  ansible_user=root ansible_password=abc123 
-control-3 ansible_host=10.0.35.42  ansible_user=root ansible_password=abc123 
-compute-1 ansible_host=10.0.35.43  ansible_user=root ansible_password=abc123 
-compute-2 ansible_host=10.0.35.44  ansible_user=kolla ansible_password=kolla ansible_sudo_pass=kolla
+master-1 ansible_host=10.0.35.61  ansible_user=root ansible_password=abc123
+master-2 ansible_host=10.0.35.62  ansible_user=root ansible_password=abc123
+master-3 ansible_host=10.0.35.63  ansible_user=root ansible_password=abc123
 
 
 [ubuntu]
-control-1
-compute-2
 
 [new]
-#control-1
-#control-2
-#control-3
-#compute-1
-#compute-2
+#master-1
+#master-2
+#master-3
 
 [centos]
-control-2
-control-3
-compute-1
+master-1
+master-2
+master-3
