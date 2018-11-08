@@ -7,25 +7,24 @@
   tasks:
     - include_vars: '{{ item }}'
       with_items:
-        - '../etc/kolla/passwords.yml'
-        - '../etc/kolla/globals.yml'
+        - '../etc/germ/passwords.yml'
+        - '../etc/germ/globals.yml'
 
-#- name: run init play book
-#  import_playbook: /home/kolla/dire/steam/ansible/site.yml
+- name: run init play book
+  import_playbook: /home/kolla/dire/steam/ansible/site.yml
 
 - name: include options
   hosts:
     - all
   tags: always
-  become: true
   tasks:
     - include_vars: '{{ item }}'
       with_items:
-        - '../etc/kolla/auth.yml'
+        - '../etc/germ/auth.yml'
 
-#- name: run openstack playbook
-#  import_playbook: openstack/site.yml
-#  when: cluster_type == 'openstack'
+- name: run openstack playbook
+  import_playbook: openstack/site.yml
+  when: cluster_type == 'openstack'
 
 - name: run kubernetes playbook
   import_playbook: kubernetes/site.yml

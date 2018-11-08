@@ -30,6 +30,8 @@ retry_stagger: 5
 
 disable_swap: true
 
+ansible_become: true
+
 # This is the group that the cert creation scripts chgrp the
 # cert files to. Not really changeable...
 kube_cert_group: kube-cert
