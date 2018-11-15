@@ -1,0 +1,34 @@
+# for deploy
+
+deploy_ip: '10.0.35.21'
+cluster_domain: mydomain.com
+docker_registry: "{{deploy_host}}"
+
+external_ntp_servers:
+  - 0.pool.ntp.org
+  - 1.pool.ntp.org
+  - 2.pool.ntp.org
+  - 3.pool.ntp.org
+
+name_servers:
+  - 114.114.114.114
+
+reset_network_force: true
+
+kolla_internal_vip_address: "10.0.35.50"
+
+kolla_base_distro: "ubuntu"
+
+# Valid options are [ binary, source ]
+#kolla_install_type: "binary"
+
+# Valid option is Docker repository tag
+openstack_release: "queens"
+
+docker_registry: "{{deploy_host}}"
+docker_namespace: "kolla"
+docker_registry_username: "admin"
+docker_registry_password: "admin123"
+
+physnets: physnet1
+neutron_bridge_name: br-ex

@@ -7,7 +7,10 @@
   tasks:
     - include_vars: etc/globals.yml
 
-    - include_vars: etc/all.yml
+    - include_vars: etc/germ.yml
+
+- name: include steam playbook
+  import_playbook: ../site.yml
 
 - name: pre deploy
   import_playbook: pre-deploy.yml
