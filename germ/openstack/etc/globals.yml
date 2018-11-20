@@ -449,4 +449,3 @@ gnocchi_base_distro: 'centos'
 
 physnets: physnet1
 neutron_bridge_name: br-ex
-

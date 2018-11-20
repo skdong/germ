@@ -1,5 +1,5 @@
 ---
-#- import_playbook: /home/kolla/dire/kolla-ansible/ansible/destroy.yml
+- import_playbook: '{{ kolla_path }}/ansible/destroy.yml'
 
 - name: clean directory
   become: true

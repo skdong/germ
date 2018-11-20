@@ -1,10 +1,2 @@
 ---
-- name: include options
-  hosts:
-    - localhost
-  tags: always
-  become: true
-  tasks:
-    - include_vars: etc/globals.yml
-
-- import_playbook: /home/kolla/dire/kolla-ansible/ansible/post-deploy.yml
+- import_playbook: '{{kolla_path}}/ansible/post-deploy.yml'
