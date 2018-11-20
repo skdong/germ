@@ -10,7 +10,7 @@
   tasks:
     - include_vars: etc/globals.yml
 
-- import_playbook: '{{kolla_path}}ansible/site.yml'
+- import_playbook: '{{kolla_path}}/ansible/site.yml'
 
 - import_playbook: post-play.yml
   tags: post-play
