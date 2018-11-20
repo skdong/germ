@@ -22,4 +22,3 @@ yum_repo_url: 'http://{{yum_repo_host}}/repository/yum'
 
 reset_network_force: true
 
-cluster_type: 'kubernetes'

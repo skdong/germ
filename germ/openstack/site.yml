@@ -1,4 +1,7 @@
 ---
+- name: deploy cloud os
+  import_playbook: ../site.yml
+
 - name: include options
   hosts:
     - all
@@ -7,9 +10,7 @@
   tasks:
     - include_vars: etc/globals.yml
 
-#- import_playbook: pre-play.yml
-
-#- import_playbook: /home/kolla/dire/kolla-ansible/ansible/site.yml
+- import_playbook: '{{kolla_path}}ansible/site.yml'
 
 - import_playbook: post-play.yml
   tags: post-play
