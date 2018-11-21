@@ -7,9 +7,9 @@ master-3 ansible_host=10.0.35.63  ansible_user=root ansible_password=abc123
 [ubuntu]
 
 [new]
-#master-1
-#master-2
-#master-3
+master-1
+master-2
+master-3
 
 [centos]
 master-1
