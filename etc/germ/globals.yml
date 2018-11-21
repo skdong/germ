@@ -22,3 +22,7 @@ yum_repo_url: 'http://{{yum_repo_host}}/repository/yum'
 
 reset_network_force: true
 
+work_space: '/opt/dire'
+steam_path: '{{work_space}}/steam'
+kolla_path: '{{work_space}}/kolla-ansible'
+kubespray_path: '{{work_space}}/kubespray'
