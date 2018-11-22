@@ -3,7 +3,7 @@
 deploy_ip: '10.0.35.21'
 cluster_domain: mydomain.com
 docker_registry: "{{deploy_host}}"
-
+deploy_host: 'deploy.{{cluster_domain}}'
 external_ntp_servers:
   - 0.pool.ntp.org
   - 1.pool.ntp.org
