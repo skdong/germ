@@ -1,10 +1,10 @@
 [all]
-control-1 ansible_host=10.0.38.6  ansible_user=slancer ansible_password=1qaz@WSXasdt6
-control-2 ansible_host=10.0.38.7  ansible_user=slancer ansible_password=1qaz@WSXasdt6
-control-3 ansible_host=10.0.38.10  ansible_user=slancer ansible_password=1qaz@WSXasdt6
-compute-1 ansible_host=10.0.38.11  ansible_user=slancer ansible_password=1qaz@WSXasdt6
-compute-2 ansible_host=10.0.38.12  ansible_user=slancer ansible_password=1qaz@WSXasdt6
-compute-3 ansible_host=10.0.38.13  ansible_user=slancer ansible_password=1qaz@WSXasdt6
+control-1 ansible_host=10.0.35.81  ansible_user=kolla ansible_password=kolla
+control-2 ansible_host=10.0.35.82  ansible_user=kolla ansible_password=kolla
+control-3 ansible_host=10.0.35.83  ansible_user=kolla ansible_password=kolla
+compute-1 ansible_host=10.0.35.84  ansible_user=kolla ansible_password=kolla
+compute-2 ansible_host=10.0.35.85  ansible_user=kolla ansible_password=kolla
+compute-3 ansible_host=10.0.35.86  ansible_user=kolla ansible_password=kolla
 
 
 [ubuntu]
