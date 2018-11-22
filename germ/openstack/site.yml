@@ -4,7 +4,8 @@
 
 - name: include options
   hosts:
-    - all localhost
+    - all
+    - localhost
   tags: always
   become: true
   tasks:
