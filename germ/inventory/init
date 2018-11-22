@@ -1,10 +1,10 @@
 [all]
-control-1 ansible_host=10.0.35.81  ansible_user=kolla ansible_password=kolla
-control-2 ansible_host=10.0.35.82  ansible_user=kolla ansible_password=kolla
-control-3 ansible_host=10.0.35.83  ansible_user=kolla ansible_password=kolla
-compute-1 ansible_host=10.0.35.84  ansible_user=kolla ansible_password=kolla
-compute-2 ansible_host=10.0.35.85  ansible_user=kolla ansible_password=kolla
-compute-3 ansible_host=10.0.35.86  ansible_user=kolla ansible_password=kolla
+control-1 ansible_host=10.0.35.81  ansible_user=kolla ansible_password=kolla ansible_sudo_pass=kolla
+control-2 ansible_host=10.0.35.82  ansible_user=kolla ansible_password=kolla ansible_sudo_pass=kolla
+control-3 ansible_host=10.0.35.83  ansible_user=kolla ansible_password=kolla ansible_sudo_pass=kolla
+compute-1 ansible_host=10.0.35.84  ansible_user=kolla ansible_password=kolla ansible_sudo_pass=kolla
+compute-2 ansible_host=10.0.35.85  ansible_user=kolla ansible_password=kolla ansible_sudo_pass=kolla
+compute-3 ansible_host=10.0.35.86  ansible_user=kolla ansible_password=kolla ansible_sudo_pass=kolla
 
 
 [ubuntu]
