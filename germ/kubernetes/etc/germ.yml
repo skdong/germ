@@ -54,3 +54,11 @@ helm_stable_repo_url: "http://{{ deploy_host }}/repository/helm/"
 helm_version: "v2.9.1"
 
 kubelet_authentication_token_webhook: true
+
+germ_path: '/opt/dire/k8s-test/germ'
+
+
+work_space: '/opt/dire'
+steam_path: '{{work_space}}/steam'
+kubespray_path: '{{work_space}}/kubespray'
+

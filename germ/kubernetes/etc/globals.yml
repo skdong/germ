@@ -173,9 +173,9 @@ dashboard_enabled: true
 efk_enabled: false
 
 # Helm deployment
-helm_enabled: true
-helm_stable_repo_url: "http://10.0.35.21/repository/helm/"
-helm_version: "v2.9.1"
+#helm_enabled: true
+#helm_stable_repo_url: "http://10.0.35.21/repository/helm/"
+#helm_version: "v2.9.1"
 
 # Istio deployment
 istio_enabled: false
