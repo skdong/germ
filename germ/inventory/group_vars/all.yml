@@ -1,5 +1,5 @@
----
-work_space: '/opt/dire'
-steam_path: '{{work_space}}/steam'
-kolla_path: '{{work_space}}/kolla-ansible'
-kubespray_path: '{{work_space}}/kubespray'
+#---
+#work_space: '/opt/dire'
+#steam_path: '{{work_space}}/steam'
+#kolla_path: '{{work_space}}/kolla-ansible'
+#kubespray_path: '{{work_space}}/kubespray'
