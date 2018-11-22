@@ -5,6 +5,6 @@
 network_ether_interfaces:
   - device: eno16780032
     bootproto: static
-    address: 10.0.38.11
+    address: 10.0.35.84
     netmask: 255.255.255.0
-    gateway: 10.0.38.254
+    gateway: 10.0.35.254
