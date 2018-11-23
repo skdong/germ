@@ -36,3 +36,4 @@ neutron_bridge_name: br-ex
 
 CONFIG_DIR: '{{germ_path}}/etc/germ/admin_openrc'
 
+germ_path: '/opt/dire/germ-kolla'
