@@ -264,6 +264,7 @@ bin_dir: /usr/local/bin
 ## Internal loadbalancers for apiservers
 loadbalancer_apiserver_localhost: true
 
+helm_image_repo: "{{ docker_registry }}/k8s/k8s-helm"
 etcd_image_repo: "{{ docker_registry }}/k8s/etcd"
 flannel_image_repo: "{{ docker_registry }}/k8s/flannel"
 flannel_cni_image_repo: "{{ docker_registry }}/k8s/flannel-cni"
@@ -280,11 +281,10 @@ dnsmasq_sidecar_image_repo: "{{ docker_registry }}/k8s/k8s-dns-sidecar-amd64"
 elasticsearch_image_repo: "{{ docker_registry }}/k8s/elasticsearch"
 fluentd_image_repo: "{{ docker_registry }}/k8s/fluentd-elasticsearch"
 kibana_image_repo: "{{ docker_registry }}/k8s/kibana"
-tiller_image_repo: "{{ docker_registry }}/k8s/tiller"
 registry_proxy_image_repo: "{{ docker_registry }}/k8s/kube-registry-proxy"
 ingress_nginx_default_backend_image_repo: "{{ docker_registry }}/k8s/defaultbackend"
 kubednsautoscaler_image_repo: "{{ docker_registry }}/k8s/cluster-proportional-autoscaler-amd64"
 dashboard_image_repo: "{{ docker_registry }}/k8s/kubernetes-dashboard-amd64"
 
-helm_image_repo: "{{ docker_registry }}/k8s/k8s-helm"
+tiller_image_repo: "{{ docker_registry }}/k8s/tiller"
 ingress_nginx_controller_image_repo: "{{ docker_registry }}/k8s/nginx-ingress-controller"
