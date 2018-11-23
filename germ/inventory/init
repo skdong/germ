@@ -16,12 +16,12 @@ compute-2
 compute-3
 
 [new]
-#control-1
-#control-2
-#control-3
-#compute-1
-#compute-2
-#compute-3
+control-1
+control-2
+control-3
+compute-1
+compute-2
+compute-3
 
 [centos]
 #master-1
