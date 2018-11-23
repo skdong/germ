@@ -3,6 +3,7 @@
 deploy_ip: '10.0.35.21'
 cluster_domain: mydomain.com
 docker_registry: "{{deploy_host}}"
+germ_path: '/opt/dire/germ-kolla'
 
 external_ntp_servers:
   - 0.pool.ntp.org
@@ -34,4 +35,4 @@ physnets: physnet1
 neutron_bridge_name: br-ex
 
 CONFIG_DIR: '{{germ_path}}/etc/germ/admin_openrc'
-germ_path: '/opt/dire/germ-kolla'
+
