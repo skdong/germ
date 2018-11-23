@@ -1,9 +1,16 @@
 # for deploy
 
-deploy_ip: '10.0.35.21'
-cluster_domain: mydomain.com
-docker_registry: "{{deploy_host}}"
 
+---
+deploy_ip: '10.0.35.21'
+deploy_host: 'deploy.mydomain.com'
+
+certs_repo_host: '10.0.35.21'
+apt_repo_host: '10.0.35.21'
+yum_repo_host: '10.0.35.21'
+pip_repo_host: '10.0.35.21'
+
+docker_registry: "{{deploy_host}}"
 
 external_ntp_servers:
   - 0.pool.ntp.org
@@ -13,6 +20,16 @@ external_ntp_servers:
 
 name_servers:
   - 114.114.114.114
+
+yum_repo_url: 'http://{{yum_repo_host}}/repository/yum'
+
+reset_network_force: true
+
+work_space: '/opt/dire'
+steam_path: '{{work_space}}/steam'
+kolla_path: '{{work_space}}/kolla-ansible'
+kubespray_path: '{{work_space}}/kubespray'
+
 
 reset_network_force: true
 
