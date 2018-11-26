@@ -4,10 +4,10 @@
   vars:
     germ_path: /opt/dire/germ
   vars_files:
-    - '{{germ_path}}/etc/kolla/passwords.yml'
+    - '{{germ_path}}/etc/germ/passwords.yml'
   gather_facts: no
   tasks:
     - blockinfile:
-        path: '{{germ_path}}/etc/kolla/id_rsa'
+        path: '{{germ_path}}/etc/germ/id_rsa'
         content: '{{kolla_ssh_key.private_key }}'
         create: True

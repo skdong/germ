@@ -1,2 +1,2 @@
 #/usr/bin/env bash
-ansible-playbook -e @../etc/kolla/globals.yml sit.yml -t cluster $*
+ansible-playbook -e @../etc/germ/globals.yml site.yml -t cluster $*
