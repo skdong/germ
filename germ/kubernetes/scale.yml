@@ -1,0 +1,18 @@
+---
+- name: include steam playbook
+  import_playbook: ../site.yml
+
+- name: include options
+  hosts:
+    - all
+  tags: always
+  become: true
+  tasks:
+    - include_vars: etc/globals.yml
+    - include_vars: etc/germ.yml
+
+- name: pre deploy
+  import_playbook: pre-deploy.yml
+
+- name: import add-node playbook
+  import_playbook: add-node.yml
