@@ -1,0 +1,11 @@
+##################
+# ceph osd devices
+##################
+# set ceph osd devices
+network_ether_interfaces:
+  - device: eno16780032
+    bootproto: static
+    address: 10.0.35.64
+    netmask: 255.255.255.0
+    gateway: 10.0.35.254
+
