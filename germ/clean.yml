@@ -5,8 +5,8 @@
   tasks:
     - include_vars: '{{ item }}'
       with_items:
-        - '../etc/kolla/passwords.yml'
-        - '../etc/kolla/globals.yml'
+        - '../etc/germ/passwords.yml'
+        - '../etc/germ/globals.yml'
 
 - name: include options
   hosts:
@@ -15,7 +15,7 @@
   tasks:
     - include_vars: '{{ item }}'
       with_items:
-        - '../etc/kolla/auth.yml'
+        - '../etc/germ/auth.yml'
         - '{{ cluster_type }}/etc/globals.yml'
 
 - name: run test
