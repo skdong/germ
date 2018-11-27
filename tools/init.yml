@@ -1,8 +1,6 @@
 ---
 - name: genrate private key file
   hosts: localhost
-  vars:
-    germ_path: '{{germ_path}}'
   vars_files:
     - '{{germ_path}}/etc/germ/passwords.yml'
   gather_facts: no
@@ -10,4 +8,5 @@
     - blockinfile:
         path: '{{germ_path}}/etc/germ/id_rsa'
         content: '{{kolla_ssh_key.private_key }}'
+        mode: 0600
         create: True
