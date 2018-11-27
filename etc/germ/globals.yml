@@ -1,6 +1,3 @@
-# for deploy
-
-
 ---
 deploy_ip: '10.0.35.21'
 deploy_host: 'deploy.mydomain.com'
@@ -29,28 +26,5 @@ work_space: '/opt/dire'
 steam_path: '{{work_space}}/steam'
 kolla_path: '{{work_space}}/kolla-ansible'
 kubespray_path: '{{work_space}}/kubespray'
-
-
-reset_network_force: true
-
-kolla_internal_vip_address: "10.0.35.50"
-
-kolla_base_distro: "ubuntu"
-
-# Valid options are [ binary, source ]
-#kolla_install_type: "binary"
-
-# Valid option is Docker repository tag
-openstack_release: "queens"
-
-docker_registry: "{{deploy_host}}"
-docker_namespace: "kolla"
-docker_registry_username: "admin"
-docker_registry_password: "admin123"
-
-physnets: physnet1
-neutron_bridge_name: br-ex
-
-CONFIG_DIR: '{{germ_path}}/etc/germ/admin_openrc'
 
 germ_path: '/opt/dire/germ-kolla'

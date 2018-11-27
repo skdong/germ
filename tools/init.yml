@@ -2,7 +2,7 @@
 - name: genrate private key file
   hosts: localhost
   vars:
-    germ_path: /opt/dire/germ
+    germ_path: '{{germ_path}}'
   vars_files:
     - '{{germ_path}}/etc/germ/passwords.yml'
   gather_facts: no
