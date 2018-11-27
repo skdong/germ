@@ -7,7 +7,7 @@ python $MODULE/generate_passwords.py -p $MODULE/../etc/germ/passwords.yml
 ansible-playbook $MODULE/init.yml
 chmod 0600 $MODULE/../etc/germ/id_rsa
 if ["$1" = "k8s" ] ;then
-    mv -f ../germ/ansible-k8s.cfg ../germ/ansible.cfg
+    mv -f $MODULE/../germ/ansible-k8s.cfg $MODULE/../germ/ansible.cfg
 else
-    mv -f ../germ/ansible-openstack.cfg ../germ/ansible.cfg
+    mv -f $MODULE/../germ/ansible-openstack.cfg $MODULE/../germ/ansible.cfg
 fi
