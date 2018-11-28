@@ -51,6 +51,6 @@ docker_registry_password: "admin123"
 physnets: physnet1
 neutron_bridge_name: br-ex
 
-CONFIG_DIR: '{{germ_path}}/etc/germ/admin_openrc'
+CONFIG_DIR: '{{germ_path}}/etc/germ'
 
 germ_path: '/opt/dire/germ'
