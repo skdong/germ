@@ -1,0 +1,34 @@
+---
+- name: include options
+  hosts:
+    - all
+    - localhost
+  tags: always
+  gather_facts: false
+  tasks:
+    - include_vars: '{{ item }}'
+      with_items:
+        - '../etc/germ/passwords.yml'
+
+- name: include options
+  hosts:
+    - all
+  tags: always
+  tasks:
+    - include_vars: '{{ item }}'
+      with_items:
+        - '../etc/germ/auth.yml'
+
+- name: include options
+  hosts:
+    - all
+    - localhost
+  tags: always
+  become: true
+  tasks:
+    - include_vars: etc/globals.yml
+
+- import_playbook: '{{satellite_path}}/ansible/site.yml'
+
+- import_playbook: post-play.yml
+  tags: post-play
