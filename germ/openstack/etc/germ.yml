@@ -54,3 +54,6 @@ neutron_bridge_name: br-ex
 CONFIG_DIR: '{{germ_path}}/etc/germ'
 
 germ_path: '/opt/dire/germ'
+
+network_interface: "ens160"
+neutron_external_interface: "ens192"
