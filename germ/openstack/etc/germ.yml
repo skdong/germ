@@ -54,4 +54,7 @@ neutron_bridge_name: br-ex
 CONFIG_DIR: '{{germ_path}}/etc/germ'
 
 germ_path: '/opt/dire/germ'
-satellite_path: '/opt/dire/Satellite'
+
+#使用satellite安装peometheus时使用
+#satellite_path: '/opt/dire/Satellite'
+#kolla_action: deploy
