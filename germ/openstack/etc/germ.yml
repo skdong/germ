@@ -55,6 +55,10 @@ CONFIG_DIR: '{{germ_path}}/etc/germ'
 
 germ_path: '/opt/dire/germ'
 
-#使用satellite安装peometheus时使用
+network_interface: "ens160"
+neutron_external_interface: "ens192"
+
+#使用satellite安装peometheus时使用,将下面两个注释放开
 #satellite_path: '/opt/dire/Satellite'
 #kolla_action: deploy
+
