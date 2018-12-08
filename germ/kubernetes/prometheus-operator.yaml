@@ -1,0 +1,27 @@
+global:
+  ## Hyperkube image to use when getting ThirdPartyResources & cleaning up
+  ##
+  hyperkube:
+    repository: deploy.mydomain.com/k8s/hyperkube
+    tag: v1.7.6_coreos.0
+    pullPolicy: IfNotPresent
+
+## Prometheus-config-reloader image to use for config and rule reloading
+##
+prometheusConfigReloader:
+  repository: deploy.mydomain.com/k8s/prometheus-config-reloader
+  tag: v0.20.0
+
+## Configmap-reload image to use for reloading configmaps
+##
+configmapReload:
+  repository: deploy.mydomain.com/k8s/configmap-reload
+  tag: v0.0.1
+
+## Prometheus-operator image
+##
+image:
+  repository: deploy.mydomain.com/k8s/prometheus-operator
+  tag: v0.20.0
+  pullPolicy: IfNotPresent
+

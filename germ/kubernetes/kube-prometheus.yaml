@@ -1,0 +1,115 @@
+alertmanager:
+
+  ## Alertmanager container image
+  ##
+  image:
+    repository: deploy.mydomain.com/k8s/alertmanager
+    tag: v0.15.1
+
+  service:
+
+    ## Port to expose on each node
+    ## Only used if service.type is 'NodePort'
+    ##
+    nodePort: 30903
+
+    ## Service type
+    ##
+    type: NodePort
+
+
+prometheus:
+
+  ## Prometheus container image
+  ##
+  image:
+    repository: deploy.mydomain.com/k8s/prometheus
+    tag: v2.2.1
+
+  ## List of Secrets in the same namespace as the Prometheus
+  ## object, which shall be mounted into the Prometheus Pods.
+  ## Ref: https://github.com/coreos/prometheus-operator/blob/master/Documentation/api.md#prometheusspec
+  ##
+  secrets: [etcd-certs]
+
+  service:
+
+    ## Port to expose on each node
+    ## Only used if service.type is 'NodePort'
+    ##
+    nodePort: 30900
+
+    ## Service type
+    ##
+    type: NodePort
+
+grafana:
+
+  ## grafana container image
+  ##
+  image:
+    repository: deploy.mydomain.com/k8s/grafana
+    tag: 5.0.0
+
+  service:
+
+    ## Port to expose on each node
+    ## Only used if service.type is 'NodePort'
+    ##
+    nodePort: 30902
+
+    ## Service type
+    ##
+    type: NodePort
+
+
+  grafanaWatcher:
+    ## grafanaWatcher container image
+    ##
+    repository: deploy.mydomain.com/k8s/grafana-watcher
+    tag: v0.0.8
+
+exporter-kube-state:
+
+  kube_state_metrics:
+    ## metrics container image
+    ##
+    image:
+      repository: deploy.mydomain.com/k8s/kube-state-metrics
+      tag: v1.2.0
+
+  addon_resizer:
+    ## addon_resizer container image
+    ##
+    image:
+      repository: deploy.mydomain.com/k8s/addon-resizer
+      tag: "1.7"
+
+exporter-node:
+
+  ## exporter-node container image
+  ##
+  image:
+    repository: deploy.mydomain.com/k8s/node-exporter
+    tag: v0.15.2
+
+exporter-kube-etcd:
+
+  # on what port are the metrics exposed by etcd. Use port 2379 for https
+  etcdPort: 2379
+  # Are we talking http or https?
+  scheme: https
+  # for deployments that have etcd deployed outside of the cluster, list their adresses here
+  endpoints: [10.0.43.11,10.0.43.12,10.0.43.13]
+  # TLS Configuration for the service monitor, default to none, but append cert and keyfile if passed
+  caFile: /etc/prometheus/secrets/etcd-certs/ca.pem
+  certFile: /etc/prometheus/secrets/etcd-certs/member-master-1.pem
+  keyFile: /etc/prometheus/secrets/etcd-certs/member-master-1-key.pem
+  ca: ca.pem
+  key: member-master-1-key.pem
+  cert: member-master-1.pem
+  caFileContent: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUMrVENDQWVHZ0F3SUJBZ0lKQU5qRURUOEFmK1dXTUEwR0NTcUdTSWIzRFFFQkN3VUFNQkl4RURBT0JnTlYKQkFNTUIyVjBZMlF0WTJFd0lCY05NVGd3T1RJM01EVXlPVEEzV2hnUE1qRXhPREE1TURNd05USTVNRGRhTUJJeApFREFPQmdOVkJBTU1CMlYwWTJRdFkyRXdnZ0VpTUEwR0NTcUdTSWIzRFFFQkFRVUFBNElCRHdBd2dnRUtBb0lCCkFRREhRRkVFWDRPbEFnWFRjTlpyT1NwZXJjby9YSjY0NU44YmZNZGdVQlJZckl3elgrcFJNOXcvYmJqaFNiTjcKYWlKYUZxSzQwVy8yTVY2QXNkaUQxTDVhTERCQytTeUVyRlZsdEtXMjJGakcxQ0lDcnpvLzZ1eTNuT3hmamczLwpsU2tlSFdiWWYvQ2FwbUl1TTNvSXV5YUtreDlSNWpCK3htekRVbmMzdnhVT3puejJhc2N1WDl3bTdGMjluNlY3Ck9WQm9lUzkwMlVaQlFjcUx3RnhpOHRSQWMyaDRLK3l4Smc3WWNELzhOMFoxK3FZRkpDd29pdDdTamovbnRuTXEKU3lHUjdVR0ZEL2JxUUhQMnUzZCtMVFl4Wmhuc0M4bTNBbHcvN2Rzcks2QnRIaGEwOTdxTHo4aGoxK0tDeUo1Swp5RzMzcW1TVk52bUh1VS9zVHUycHZpWVpBZ01CQUFHalVEQk9NQjBHQTFVZERnUVdCQlRJajdrakJKTXNHVEFsClVDRmRRTjIwYW9IS1hEQWZCZ05WSFNNRUdEQVdnQlRJajdrakJKTXNHVEFsVUNGZFFOMjBhb0hLWERBTUJnTlYKSFJNRUJUQURBUUgvTUEwR0NTcUdTSWIzRFFFQkN3VUFBNElCQVFDalZUZzNFb2JaaWx0Zm9kcVlnTmlqNGlqOQoyUGZLOGZsVEJ6TUtFeVVJRWVFTUc0WUdob0lQb3ZHZFZuSXJJQU9PMXZnMnBMOEc2aFowbGFhUHBSbzRpczdDClFCclV2N3Z0MDB2ZlNoVFhSeFNMZFczTEtQdlk3U2JidHVIRzVLZW03MDQzcnZSWFEybzI3Mi9XOXhSb3lqTUkKOWhyMXFVL2RxbUkvTUxkckxFNm10YWFFK2Y3RVk2NFN3SWZCRklzamx1VGxmbTh0NGRuQjZXUkl4MTRYQnF6SwpSU3hXbXBHMDFEMnoyUEp2YjY4N0xBRTJjUiszTTd3dlJTR2NFd1VXTmhIMWxIMURJYmtVcUQrT0p5czNidGp1CnZ0R2ZQc3lQbHFPbHArYVlZSXFuZndhYkZUSW93VFZIeEtGYkhwVDBOR09DNVlqMk9rZ2NqTVdJSHFJQgotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==
+  keyFileContent: LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQpNSUlFcEFJQkFBS0NBUUVBeUo3WGN6dlZhUDNWS2VJaWtYTnRiR3ZCcmg4YjlwQmpLa1lmV1RFejBmK1U4SzBHCmsxVG1MQkMwMTMyOEhqR2I4ZTVtV2JLKzFCQ3A0Z3QzYjVEOXhVaGt1a29xSU5tZ0FmWlY3U3dHK2k4VVp0NGQKSzJMTHgyVkFNZXk2bGRZQnM0Rk1rTVpxWUI5MnpOMG5TZDAvNjZpcG4wdEhWdXVpb3QwYUgvRW5XNG5xQTc1bgpadUlKd2RKMUxrUWhjM3BPejgvNUtDNnZoSkZqc0l4SkZlMU85Snl0Mk4rWC9pTHYvcU9Nc01YNkxwbmZBV1pNCnl6WHUxd3FsRGpMZEhBb2VQb0dxK3I1c09ZUXluQUtjMlZod2NoelJKeXN1OGVjeW83c2NORVB5Zkd0S09EWFUKZkx3bmZaQm9HYVcxTmxmMjYzcUg3QkpUWGtFWmlCNGZvdkZ0bXdJREFRQUJBb0lCQUNTZ2cxdEJlRVB6MjhBSwp6aDdhQVFkRFlSZm1EQmZtNG9Qc1MzcmdOY0xJTTZ3Qkd1czVHOUM5dUJhRG1SMjJGdStEZytJcWRSYUllRXVSCnBsdVRFQkc5bHM1QURoTHpTSGd6UGhyUDUvSXpPRGxUb2VXeTR0dGppK1hSZjNzdG1CL3Fva3pvUExHUjdRR1gKK3IxTWpJZjh3Z01ZSGswck5nVWY4czRVSEFobEFiZUpSUFQwbThGSnBZOVpQWUsrc2l0SEJ2ZTFxek56MElFYgo1WE1OWTVsT0tKbHVza0NFTjVCSVd3OHdDK1pTVFMwWnZ1V0orU0thcndvbFk4OTBHbEJDeE4wLzhXTm5aL3ZpCk9rRnd4cmRQUHNmK29VOW5FMW1qaERUM2Y1QjZySys1MzlUV1dSc1RuRlF2Ym1QcjhBM3hSS2J5bWZHaW9UV1QKQXROOWh0RUNnWUVBNVpWOXZkeDYvRWpUKzdXZVp0ZjF3NjI1OFd6RUNUSmlOcFduY1RiQnRBQTBKVWdFZm1OcApCOGFraDRkK2U2NEhFdmtjWng2VEFxWWhpblY0Wnp1U3FkWCt0d3dDRmlIL2VVM0hxNHoyL1dVVUFSV0RjeVdNCm9xa0REOCtzVE5RWnd6UzM5ajdBbkRiRkhFQnFadURtZFZVVzlYdVhya2lqdW9Cc3NlNit0d01DZ1lFQTM3UTMKaVlHanZMUzQ2NU1wTlhEVUxpWFk5aWFDa25FWnpZS3lqU00yVlA5SVZiMENwV1pMN21tdHhmSlZMNEJWY2R5MQpEQTFlakg4NUM4WGl0TzcwRVlmZ1BGQmVXa0d4b0ExckJBeFNObGx3ZnB3NkFuMHo0bHZzTVhDay9KYS9XU0h5CmUvL0NqQW1tczI0QVdUSDd6d3JuT29xREpDdUllSTBCVlVKZGY0a0NnWUVBeUswYjVRcEV3aUxTa0pGWExTUVcKSVgzSUs1eGIyb0ljMFFPTkFldlA4d3UraU52amVhcGhVemV4OXZsYmVMWk1YcXc2eEhRNElqZWUxODBJZW92YgpEZk1NbTJtMnBTd0FpRUtSaG9WSUc0UHZzV2JocUpPbzAwR1NlSTZaVitxSnZsUmxmS3VyWnFDRk9NV2hlOTJYCjgvVjFoUXdNTUg0MEIwQmNRa2Vpa29zQ2dZQnRmNW83cllCSEt6TGs1S2lrSnZGRkVYT01zVGJ5bFhmcTExR3MKc2hLek1pM25BZGljdTJEcGQwTC9CR3BjRVBaQ0FLV0NHNzB2Q2tzVER5NjBIODdLRWZkWnJvRXdycjFTT1o4cgpZUmlReitDM3FLTGdld1o5Z3o4dXlCT0tMQVBIamsxU0V0UFlsaFRKK1Vza1hjb0RBelJCdkhFS3NHQmhtYXVRClh5YkMrUUtCZ1FDa3pKamVPRzA3Z1VkclhWd0gvR1Bhano5eEpGeXN4UkN4blN0VGJkc1hqbUVGSVBENm54ZWkKR3o3RnMyU0dXSGQ5ZVdSM1Y1N012VnNaZG5FVk9yM0pJZUJ1czIzNnFsQ25zbGRTZDMyVGh6dVdMNGFoaHFXcgpuamJrcTVUZDVtNEM0VGZLVlVGK0lGalUxWURyTll1Z2RkZkVSUnJDbkQyRlJEN2x0L09KK3c9PQotLS0tLUVORCBSU0EgUFJJVkFURSBLRVktLS0tLQo=
+  certFileContent: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUQ1akNDQXM2Z0F3SUJBZ0lKQUxWYlNVNWt1T3lRTUEwR0NTcUdTSWIzRFFFQkN3VUFNQkl4RURBT0JnTlYKQkFNTUIyVjBZMlF0WTJFd0lCY05NVGd3T1RJM01EVXlPVEE0V2hnUE1qRXhPREE1TURNd05USTVNRGhhTUI4eApIVEFiQmdOVkJBTU1GR1YwWTJRdGJXVnRZbVZ5TFcxaGMzUmxjaTB4TUlJQklqQU5CZ2txaGtpRzl3MEJBUUVGCkFBT0NBUThBTUlJQkNnS0NBUUVBeUo3WGN6dlZhUDNWS2VJaWtYTnRiR3ZCcmg4YjlwQmpLa1lmV1RFejBmK1UKOEswR2sxVG1MQkMwMTMyOEhqR2I4ZTVtV2JLKzFCQ3A0Z3QzYjVEOXhVaGt1a29xSU5tZ0FmWlY3U3dHK2k4VQpadDRkSzJMTHgyVkFNZXk2bGRZQnM0Rk1rTVpxWUI5MnpOMG5TZDAvNjZpcG4wdEhWdXVpb3QwYUgvRW5XNG5xCkE3NW5adUlKd2RKMUxrUWhjM3BPejgvNUtDNnZoSkZqc0l4SkZlMU85Snl0Mk4rWC9pTHYvcU9Nc01YNkxwbmYKQVdaTXl6WHUxd3FsRGpMZEhBb2VQb0dxK3I1c09ZUXluQUtjMlZod2NoelJKeXN1OGVjeW83c2NORVB5Zkd0SwpPRFhVZkx3bmZaQm9HYVcxTmxmMjYzcUg3QkpUWGtFWmlCNGZvdkZ0bXdJREFRQUJvNElCTGpDQ0FTb3dIUVlEClZSMGxCQll3RkFZSUt3WUJCUVVIQXdJR0NDc0dBUVVGQndNQk1Ba0dBMVVkRXdRQ01BQXdIUVlEVlIwT0JCWUUKRkRSbEl3aExNVEk3R0ExcXVCZHZ6ZnA3NUhWcE1COEdBMVVkSXdRWU1CYUFGTWlQdVNNRWt5d1pNQ1ZRSVYxQQozYlJxZ2NwY01JRzlCZ05WSFJFRWdiVXdnYktDQ1d4dlkyRnNhRzl6ZElJSWJXRnpkR1Z5TFRHQ0NHMWhjM1JsCmNpMHlnZ2h0WVhOMFpYSXRNNElkYkdJdFlYQnBjMlZ5ZG1WeUxtdDFZbVZ5Ym1WMFpYTXViRzlqWVd5Q0ltVjAKWTJRdWEzVmlaUzF6ZVhOMFpXMHVjM1pqTG1Oc2RYTjBaWEl1Ykc5allXeUNGR1YwWTJRdWEzVmlaUzF6ZVhOMApaVzB1YzNaamdoQmxkR05rTG10MVltVXRjM2x6ZEdWdGdnUmxkR05raHdRS0FDc0xod1FLQUNzTWh3UUtBQ3NOCmh3Ui9BQUFCTUEwR0NTcUdTSWIzRFFFQkN3VUFBNElCQVFCL0psYVViSGFML3QvK1pwTEwwUWh6RkFSNlBQTVUKZE5aV3g4U3pMcnlPQnRtMnNlekdpNEsxWVlKeGIyeUNIT3ljTWpEQ2RGdkh6Tnl6QkNSalA0aHZNejNwYzJXcgpCSGRVbkhDd0VZM2N4bmlBMEltR3R5MVRSTXBrcUNlT1REV3FyMGFEVkFnSmgrNm1jbWQ4U0VLVGJaMzV3dDBDCjRiNHJjclRCSTJlRDhRTCtpUTRSVUpzVWkwZGlpejEzeHRQSWFFUjNRQ2lSY0VsWi9DaElFLytQWGZENG1vRHEKUGFJQ2tHU29JMzRHNE4zSndGanFXYmVaREdUbTBzOFc1UnV5OVp6bktIcjZiWERZNXJBcm1lWG01YjRMOE0vYgpFcE9NWkZDZFlwVVN2dHJxUkdNV2pkMU01WU1IREZnRzFlMit0dG1CdldTeG5kaGRLWVp0Y0JxUAotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==
+
+
