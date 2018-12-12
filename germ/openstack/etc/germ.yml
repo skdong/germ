@@ -58,7 +58,7 @@ germ_path: '/opt/dire/germ'
 network_interface: "ens160"
 neutron_external_interface: "ens192"
 
-#使用satellite安装peometheus时使用,将下面两个注释放开
-#satellite_path: '/opt/dire/Satellite'
-#kolla_action: deploy
+#使用satellite安装peometheus时使用
+satellite_path: '/opt/dire/Satellite'
+kolla_action: deploy
 
