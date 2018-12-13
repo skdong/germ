@@ -379,6 +379,10 @@ class DockerWorker(object):
         new_labels = self.params.get('labels')
         current_labels = container_info['Config'].get('Labels', dict())
         image_labels = self.check_image().get('Labels', dict())
+        #add by lancer to avoid check of non-kolla image
+        added_containers = ['/prometheus_ceph_exporter', '/prometheus_rabbit_exporter','/prometheus_libvirt_exporter','/prometheus_openstack_exporter']
+        if container_info['Name'] in added_containers:
+            return False
         for k, v in image_labels.items():
             if k in new_labels:
                 if v != new_labels[k]:
