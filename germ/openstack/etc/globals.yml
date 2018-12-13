@@ -449,3 +449,26 @@ gnocchi_base_distro: 'centos'
 
 physnets: physnet1
 neutron_bridge_name: br-ex
+
+enable_grafana: "yes"
+enable_prometheus: "no"
+prometheus_port: 9091
+prometheus_alertmanager_port: 9093
+prometheus_alertmanager_user: "admin"
+grafana_server_port: 3000
+enable_prometheus_haproxy_exporter: "{{ enable_haproxy | bool }}"
+enable_prometheus_mysqld_exporter: "{{ enable_mariadb | bool }}"
+enable_prometheus_node_exporter: "{{ enable_prometheus | bool }}"
+enable_prometheus_cadvisor: "{{ enable_prometheus | bool }}"
+enable_prometheus_memcached: "{{ enable_prometheus | bool }}"
+enable_prometheus_alertmanager: "{{ enable_prometheus | bool }}"
+enable_prometheus_ceph_mgr_exporter: "{{ enable_prometheus | bool and enable_ceph | bool }}"
+enable_prometheus_libvirt_exporter: "{{ enable_prometheus | bool }}"
+enable_prometheus_openstack_exporter: "{{ enable_prometheus | bool }}"
+enable_prometheus_rabbit_exporter: "{{ enable_prometheus | bool }}"
+enable_prometheus_ceph_exporter: "{{ enable_prometheus | bool }}"
+prometheus_ceph_exporter_port: "9128"
+prometheus_rabbit_exporter_port: "9090"
+haproxy_listen_http_extra: []
+prometheus_libvirt_exporter_port: "9177"
+prometheus_openstack_exporter_port: "9097"
