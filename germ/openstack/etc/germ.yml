@@ -2,13 +2,8 @@
 
 
 ---
-deploy_ip: '10.0.35.21'
-deploy_host: 'deploy.mydomain.com'
-
-certs_repo_host: '10.0.35.21'
-apt_repo_host: '10.0.35.21'
-yum_repo_host: '10.0.35.21'
-pip_repo_host: '10.0.35.21'
+deploy_ip: '1.0.41.21'
+deploy_host: 'deploy.dire.com'
 
 docker_registry: "{{deploy_host}}"
 
@@ -30,10 +25,12 @@ steam_path: '{{work_space}}/steam'
 kolla_path: '{{work_space}}/kolla-ansible'
 kubespray_path: '{{work_space}}/kubespray'
 
+keepalived_virtual_router_id: 52
+
 
 reset_network_force: true
 
-kolla_internal_vip_address: "10.0.35.50"
+kolla_internal_vip_address: "1.0.41.219"
 
 kolla_base_distro: "ubuntu"
 

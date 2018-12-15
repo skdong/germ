@@ -4,6 +4,7 @@
     - all
     - localhost
   tags: always
+  gather_facts: false
   tasks:
     - include_vars: '{{ item }}'
       with_items:

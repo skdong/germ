@@ -24,9 +24,9 @@ control-3
 # external-compute is the groups of compute nodes which can reach
 # outside
 [external-compute]
-compute-1
-compute-2
-compute-3
+control-1
+control-2
+control-3
 
 [compute:children]
 inner-compute
