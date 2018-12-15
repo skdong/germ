@@ -2,22 +2,19 @@
 - name: include options
   hosts:
     - all
+    - localhost
+  tags: always
+  gather_facts: false
   tasks:
     - include_vars: '{{ item }}'
       with_items:
         - '../etc/germ/passwords.yml'
-        - '../etc/germ/globals.yml'
 
 - name: include options
   hosts:
     - all
-  become: true
+  tags: always
   tasks:
     - include_vars: '{{ item }}'
       with_items:
         - '../etc/germ/auth.yml'
-        - '{{ cluster_type }}/etc/globals.yml'
-
-- name: run test
-  import_playbook: openstack/destroy.yml
-  when: cluster_type == 'openstack'

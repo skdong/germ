@@ -59,3 +59,8 @@ neutron_external_interface: "ens192"
 satellite_path: '/opt/dire/Satellite'
 kolla_action: deploy
 
+prometheus_memcached_exporter_tag: "rocky"
+prometheus_cadvisor_tag: "rocky"
+prometheus_alertmanager_tag: "rocky"
+
+enable_prometheus: "no"

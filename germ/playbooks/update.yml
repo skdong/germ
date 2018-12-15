@@ -18,7 +18,3 @@
     - include_vars: '{{ item }}'
       with_items:
         - '../etc/germ/auth.yml'
-
-- name: run test
-  import_playbook: openstack/site.yml
-  when: cluster_type == 'openstack'
