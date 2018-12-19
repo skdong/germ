@@ -2,6 +2,7 @@
 - hosts: etcd
   any_errors_fatal: "{{ any_errors_fatal | default(true) }}"
   roles:
+    - { role: recover/etcd}
     - { role: kubespray-defaults}
     - { role: etcd, tags: etcd, etcd_cluster_setup: true }
 
@@ -22,7 +23,7 @@
   any_errors_fatal: "{{ any_errors_fatal | default(true) }}"
   roles:
     - { role: kubespray-defaults}
-        - { role: kubernetes/master, tags: master }
+    - { role: kubernetes/master, tags: master }
 
 - hosts: k8s-cluster
   any_errors_fatal: "{{ any_errors_fatal | default(true) }}"
@@ -35,8 +36,3 @@
   roles:
     - { role: kubespray-defaults}
     - { role: kubernetes-apps/network_plugin, tags: network }
-
-- hosts: etcd
-  any_errors_fatal: "{{ any_errors_fatal | default(true) }}"
-  roles:
-    - { role: recover/etcd }

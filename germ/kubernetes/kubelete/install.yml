@@ -1,0 +1,20 @@
+---
+##We need to generate the etcd certificates beforhand
+- hosts: etcd
+  any_errors_fatal: "{{ any_errors_fatal | default(true) }}"
+  roles:
+  - { role: kubespray-defaults}
+  - { role: etcd, tags: etcd, etcd_cluster_setup: false }
+
+##Target only workers to get kubelet installed and checking in on any new nodes
+- hosts: kube-node
+  any_errors_fatal: "{{ any_errors_fatal | default(true) }}"
+  roles:
+    - { role: recover/kubelete}
+    - { role: kubespray-defaults}
+    - { role: kubernetes/preinstall, tags: preinstall }
+    - { role: download, tags: download, when: "not skip_downloads" }
+    - { role: etcd, tags: etcd, etcd_cluster_setup: false }
+    - { role: kubernetes/node, tags: node }
+    - { role: kubernetes/kubeadm, tags: kubeadm, when: "kubeadm_enabled" }
+    - { role: network_plugin, tags: network }

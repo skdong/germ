@@ -8,5 +8,5 @@
     - include_vars: ../etc/globals.yml
     - include_vars: ../etc/germ.yml
 
-- name: import etcd install playbook
+- name: import kubelete install playbook
   import_playbook: install.yml
