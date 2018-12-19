@@ -55,7 +55,7 @@ helm_version: "v2.9.1"
 
 kubelet_authentication_token_webhook: true
 
-germ_path: '/opt/dire/k8s-test/germ'
+germ_path: '/opt/dire/germ'
 
 
 work_space: '/opt/dire'
