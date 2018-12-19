@@ -1,6 +1,4 @@
 ---
-- name: include steam playbook
-  import_playbook: ../../site.yml
 
 - name: include options
   hosts:
