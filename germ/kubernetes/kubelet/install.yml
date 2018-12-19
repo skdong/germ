@@ -12,7 +12,6 @@
   roles:
     - { role: recover/kubelet}
     - { role: kubespray-defaults}
-    - { role: kubernetes/preinstall, tags: preinstall }
     - { role: download, tags: download, when: "not skip_downloads" }
     - { role: etcd, tags: etcd, etcd_cluster_setup: false }
     - { role: kubernetes/node, tags: node }
