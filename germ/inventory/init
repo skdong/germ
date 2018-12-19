@@ -10,10 +10,6 @@ node-5   ansible_host=10.0.35.65  ansible_user=root ansible_password=abc123
 [ubuntu]
 
 [new]
-master-1
-master-2
-master-3
-node-4
 node-5
 
 [centos]
