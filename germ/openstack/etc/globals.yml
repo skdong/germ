@@ -15,7 +15,7 @@
 kolla_base_distro: "ubuntu"
 
 # Valid options are [ binary, source ]
-#kolla_install_type: "binary"
+kolla_install_type: "binary"
 
 # Valid option is Docker repository tag
 openstack_release: "queens"

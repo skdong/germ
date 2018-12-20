@@ -3,9 +3,132 @@
   hosts:
     - all
   tags: always
+  gather_facts: false
   become: true
   tasks:
+    - include_vars: etc/germ.yml
+    - include_vars: '{{kolla_path}}/ansible/group_vars/all.yml'
     - include_vars: etc/globals.yml
+    - include_vars: etc/germ.yml
 
-- import_playbook: mariadb_recovery.yml
+- import_playbook: ../playbooks/set_auth.yml
 
+- name: Apply role rabbitmq
+  gather_facts: false
+  hosts: rabbitmq
+  roles:
+    - { role: recover/rabbitmq,
+        tags: rabbitmq}
+
+- name: Apply role mariadb
+  gather_facts: false
+  hosts: mariadb
+  roles:
+    - { role: recover/mariadb,
+        tags: mariadb}
+
+- name: Apply role memcached
+  gather_facts: false
+  hosts: memcached
+  serial: '{{ serial|default("0") }}'
+  roles:
+    - { role: recover/memcached,
+        tags: memcached }
+
+- name: Apply role nova
+  gather_facts: false
+  hosts:
+    - ceph-mon
+    - compute
+    - nova-api
+    - nova-conductor
+    - nova-consoleauth
+    - nova-novncproxy
+    - nova-scheduler
+  serial: '{{ serial|default("0") }}'
+  roles:
+    - { role: recover/nova,
+        tags: nova, }
+
+- name: Apply role neutron
+  gather_facts: false
+  hosts:
+    - neutron-server
+    - neutron-dhcp-agent
+    - neutron-l3-agent
+    - neutron-lbaas-agent
+    - neutron-metadata-agent
+    - neutron-vpnaas-agent
+    - compute
+    - manila-share
+  serial: '{{ serial|default("0") }}'
+  roles:
+    - { role: recover/neutron,
+        tags: neutron, }
+
+- name: Apply role glance
+  gather_facts: false
+  hosts:
+    - ceph-mon
+    - glance-api
+    - glance-registry
+  serial: '{{ serial|default("0") }}'
+  roles:
+    - { role: recover/glance,
+        tags: glance }
+
+- name: Apply role aodh
+  gather_facts: false
+  hosts:
+    - aodh
+  serial: '{{ serial|default("0") }}'
+  roles:
+    - { role: recover/aodh,
+        tags: aodh }
+
+- name: Apply role cinder
+  gather_facts: false
+  hosts:
+    - ceph-mon
+    - cinder-api
+    - cinder-backup
+    - cinder-scheduler
+    - cinder-volume
+  serial: '{{ serial|default("0") }}'
+  roles:
+    - { role: recover/cinder,
+        tags: cinder }
+
+- name: Apply role ceilometer
+  gather_facts: false
+  hosts:
+    - ceilometer
+    - compute
+  serial: '{{ serial|default("0") }}'
+  roles:
+    - { role: recover/ceilometer,
+        tags: ceilometer }
+
+- name: Apply role gnocchi
+  gather_facts: false
+  hosts:
+    - ceph-mon
+    - gnocchi-api
+    - gnocchi-metricd
+    - gnocchi-statsd
+  serial: '{{ serial|default("0") }}'
+  roles:
+    - { role: recover/gnocchi,
+        tags: gnocchi }
+
+- name: Apply role ceph
+  gather_facts: false
+  hosts:
+    - ceph-mon
+    - ceph-osd
+    - ceph-rgw
+    - ceph-mgr
+  serial: '{{ serial|default("0") }}'
+  roles:
+    - { role: recover/ceph,
+        tags: ceph }
