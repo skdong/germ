@@ -8,6 +8,7 @@ master-1
 master-2
 master-3
 node-4
+node-5
 
 [kube-ingress]
 master-1
