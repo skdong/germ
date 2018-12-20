@@ -1,10 +1,10 @@
 ---
 ##We need to generate the etcd certificates beforhand
-- hosts: etcd
-  any_errors_fatal: "{{ any_errors_fatal | default(true) }}"
-  roles:
-  - { role: kubespray-defaults}
-  - { role: etcd, tags: etcd, etcd_cluster_setup: false }
+#- hosts: etcd
+#  any_errors_fatal: "{{ any_errors_fatal | default(true) }}"
+#  roles:
+#  - { role: kubespray-defaults}
+#  - { role: etcd, tags: etcd, etcd_cluster_setup: false }
 
 ##Target only workers to get kubelet installed and checking in on any new nodes
 - hosts: kube-node
