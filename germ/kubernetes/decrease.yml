@@ -1,0 +1,12 @@
+---
+- name: include options
+  hosts:
+    - all
+  tags: always
+  become: true
+  tasks:
+    - include_vars: etc/globals.yml
+    - include_vars: etc/germ.yml
+
+- name: import remove-node playbook
+  import_playbook: remove-node.yml
