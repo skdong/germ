@@ -19,6 +19,8 @@ reset_network_force: true
 #kube_version: v1.9.5
 kube_version: v1.11.1
 
+etcd_version: v3.2.24
+
 # Kubernetes internal network for services, unused block of space.
 kube_service_addresses: 10.233.0.0/18
 
