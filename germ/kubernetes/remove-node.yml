@@ -3,7 +3,7 @@
     ansible_ssh_pipelining: true
   gather_facts: true
 
-- hosts: "{{ node | default('etcd:k8s-cluster:calico-rr') }}"
+- hosts: remove-node
   vars_prompt:
     name: "delete_nodes_confirmation"
     prompt: "Are you sure you want to delete nodes state? Type 'yes' to delete nodes."
@@ -18,13 +18,18 @@
 
 - hosts: kube-master
   roles:
-    - { role: remove-node/pre-remove, tags: pre-remove }
+    - { role: decrease/node/pre-remove, tags: pre-remove }
 
-- hosts: "{{ node | default('kube-node') }}"
+- hosts: remove-node
   roles:
     - { role: kubespray-defaults }
     - { role: reset, tags: reset }
+    - { role: decrease/etcd/number }
+
+- hosts: etcd
+  roles:
+    - { role: decrease/etcd/cert }
 
 - hosts: kube-master
   roles:
-    - { role: remove-node/post-remove, tags: post-remove }
+    - { role: decrease/node/post-remove, tags: post-remove }

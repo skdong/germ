@@ -1,0 +1,13 @@
+---
+- name: include options
+  hosts:
+    - all
+  tags: always
+  become: true
+  tasks:
+    - include_vars: etc/globals.yml
+    - include_vars: etc/germ.yml
+
+
+- name: import upgrade-cluster playbook
+  import_playbook: upgrade-cluster.yml
