@@ -18,7 +18,7 @@
 
 - hosts: kube-master
   roles:
-    - { role: remove-node/pre-remove, tags: pre-remove }
+    - { role: decrease/node/pre-remove, tags: pre-remove }
 
 - hosts: remove-node
   roles:
@@ -32,4 +32,4 @@
 
 - hosts: kube-master
   roles:
-    - { role: remove-node/post-remove, tags: post-remove }
+    - { role: decrease/node/post-remove, tags: post-remove }
