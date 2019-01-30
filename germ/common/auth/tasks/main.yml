@@ -1,0 +1,4 @@
+---
+- include_vars: '../../../../etc/germ/passwords.yml'
+
+- include_vars: '../../../../etc/germ/auth.yml'

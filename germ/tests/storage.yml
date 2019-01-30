@@ -1,0 +1,43 @@
+---
+- name: Gather facts for all hosts
+  hosts: all
+  serial: '{{ serial|default("0") }}'
+  gather_facts: false
+  tasks:
+    - setup:
+  tags: always
+
+- name: include options
+  hosts:
+    - all
+  tags: always
+  gather_facts: false
+  become: true
+  roles:
+    - { role: openstack/context }
+    - { role: common/auth }
+
+- name: check cluster
+  hosts:
+    - all
+  tags: always
+  gather_facts: false
+  become: true
+  roles:
+    - { role: decrease/check }
+
+- name: Apply role haproxy
+  gather_facts: false
+  vars:
+    rollback: True
+    out_osds: 
+      - 2
+      - 3
+    #delete_osds: 
+    #  - 2
+  hosts:
+    - storage
+  roles:
+    - { role: decrease/ceph/osd,
+        tags: ceph_osd}
+

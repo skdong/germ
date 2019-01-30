@@ -1,0 +1,226 @@
+---
+- name: Gather facts for all hosts
+  hosts: all
+  serial: '{{ serial|default("0") }}'
+  gather_facts: false
+  tasks:
+    - setup:
+  tags: always
+
+- name: include options
+  hosts:
+    - all
+  tags: always
+  gather_facts: false
+  become: true
+  roles:
+    - { role: openstack/context }
+    - { role: common/auth }
+
+#- name: check cluster
+#  hosts:
+#    - all
+#  tags: always
+#  gather_facts: false
+#  become: true
+#  roles:
+#    - { role: decrease/check }
+
+- name: Apply role haproxy
+  gather_facts: false
+  hosts:
+    - haproxy
+    - decrease
+  roles:
+    - { role: decrease/haproxy,
+        tags: haproxy}
+
+- name: Apply role nova
+  gather_facts: false
+  hosts:
+    - ceph-mon
+    - compute
+    - nova-api
+    - nova-conductor
+    - nova-consoleauth
+    - nova-novncproxy
+    - nova-scheduler
+    - decrease
+  serial: '{{ serial|default("0") }}'
+  roles:
+    - { role: decrease/nova,
+        tags: nova}
+
+- name: Apply role heat
+  gather_facts: false
+  hosts:
+    - heat-api
+    - heat-api-cfn
+    - heat-engine
+    - decrease
+  serial: '{{ serial|default("0") }}'
+  roles:
+    - { role: decrease/heat,
+        tags: heat}
+
+- name: Apply role cinder
+  gather_facts: false
+  hosts:
+    - ceph-mon
+    - cinder-api
+    - cinder-backup
+    - cinder-scheduler
+    - cinder-volume
+    - decrease
+  serial: '{{ serial|default("0") }}'
+  roles:
+    - { role: decrease/cinder,
+        tags: cinder}
+
+- name: Apply role glance
+  gather_facts: false
+  hosts:
+    - ceph-mon
+    - glance-api
+    - glance-registry
+    - decrease
+  serial: '{{ serial|default("0") }}'
+  roles:
+    - { role: decrease/glance,
+        tags: glance}
+
+- name: Apply role aodh
+  gather_facts: false
+  hosts:
+    - aodh
+    - decrease
+  serial: '{{ serial|default("0") }}'
+  roles:
+    - { role: decrease/aodh,
+        tags: aodh }
+
+- name: Apply role ceilometer
+  gather_facts: false
+  hosts:
+    - ceilometer
+    - compute
+    - decrease
+  serial: '{{ serial|default("0") }}'
+  roles:
+    - { role: decrease/ceilometer,
+        tags: ceilometer,}
+
+- name: Apply role gnocchi
+  gather_facts: false
+  hosts:
+    - ceph-mon
+    - gnocchi-api
+    - gnocchi-metricd
+    - gnocchi-statsd
+    - decrease
+  serial: '{{ serial|default("0") }}'
+  roles:
+    - { role: decrease/gnocchi,
+        tags: gnocchi,}
+
+- name: Apply role horizon
+  gather_facts: false
+  hosts:
+    - horizon
+    - decrease
+  serial: '{{ serial|default("0") }}'
+  roles:
+    - { role: decrease/horizon,
+        tags: horizon,}
+
+- name: Apply role neutron
+  gather_facts: false
+  hosts:
+    - neutron-server
+    - neutron-dhcp-agent
+    - neutron-l3-agent
+    - neutron-lbaas-agent
+    - neutron-metadata-agent
+    - neutron-vpnaas-agent
+    - compute
+    - manila-share
+    - decrease
+  serial: '{{ serial|default("0") }}'
+  roles:
+    - { role: decrease/neutron,
+        tags: neutron}
+
+- name: Apply role keystone
+  gather_facts: false
+  hosts: keystone, decrease
+  serial: '{{ serial|default("0") }}'
+  roles:
+    - { role: decrease/keystone,
+        tags: keystone,}
+
+- name: Apply role memcached
+  gather_facts: false
+  hosts: memcached, decrease
+  serial: '{{ serial|default("0") }}'
+  roles:
+    - { role: decrease/memcached,
+        tags: [memcache, memcached],}
+
+- name: Apply role grafana
+  gather_facts: false
+  hosts:
+    - grafana
+    - decrease
+  serial: '{{ serial|default("0") }}'
+  roles:
+    - { role: decrease/grafana,
+        tags: grafana,}
+
+- name: Apply role openvswitch
+  hosts:
+    - openvswitch
+    - decrease
+  roles:
+    - { role: decrease/openvswitch,
+        tags: openvswitch,}
+
+- name: Apply role rabbitmq
+  gather_facts: false
+  hosts: 
+    - rabbitmq
+    - decrease
+  roles:
+    - { role: decrease/rabbitmq,
+        tags: rabbitmq}
+
+- name: Apply role mariadb
+  gather_facts: false
+  hosts:
+    - mariadb
+    - decrease
+  roles:
+    - { role: decrease/mariadb,
+        tags: mariadb}
+
+- name: Apply role ceph mon
+  gather_facts: false
+  hosts:
+    - ceph-mon
+    - ceph-osd
+    - ceph-rgw
+    - ceph-mgr
+    - decrease
+  serial: '{{ serial|default("0") }}'
+  roles:
+    - { role: decrease/ceph/mon,
+        tags: ceph,}
+  
+- name: Apply role mariadb
+  gather_facts: false
+  hosts:
+    - decrease
+  roles:
+    - { role: decrease/common,
+        tags: common}
+
+

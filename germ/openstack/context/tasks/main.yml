@@ -1,0 +1,5 @@
+---
+- include_vars: ../../etc/germ.yml
+- include_vars: '{{kolla_path}}/ansible/group_vars/all.yml'
+- include_vars: ../../etc/globals.yml
+- include_vars: ../../etc/germ.yml

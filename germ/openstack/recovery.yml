@@ -5,13 +5,9 @@
   tags: always
   gather_facts: false
   become: true
-  tasks:
-    - include_vars: etc/germ.yml
-    - include_vars: '{{kolla_path}}/ansible/group_vars/all.yml'
-    - include_vars: etc/globals.yml
-    - include_vars: etc/germ.yml
-
-- import_playbook: ../playbooks/set_auth.yml
+  roles:
+    - role: openstack/context
+    - role: common/auth
 
 - name: Apply role rabbitmq
   gather_facts: false
