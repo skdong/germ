@@ -33,7 +33,8 @@
     - decrease
   roles:
     - { role: decrease/haproxy,
-        tags: haproxy}
+        tags: haproxy,
+        when: groups['decrease']}
 
 - name: Apply role nova
   gather_facts: false
@@ -49,7 +50,8 @@
   serial: '{{ serial|default("0") }}'
   roles:
     - { role: decrease/nova,
-        tags: nova}
+        tags: nova,
+        when: groups['decrease']}
 
 - name: Apply role heat
   gather_facts: false
@@ -61,7 +63,8 @@
   serial: '{{ serial|default("0") }}'
   roles:
     - { role: decrease/heat,
-        tags: heat}
+        tags: heat,
+        when: groups['decrease']}
 
 - name: Apply role cinder
   gather_facts: false
@@ -75,7 +78,8 @@
   serial: '{{ serial|default("0") }}'
   roles:
     - { role: decrease/cinder,
-        tags: cinder}
+        tags: cinder,
+        when: groups['decrease']}
 
 - name: Apply role glance
   gather_facts: false
@@ -87,7 +91,8 @@
   serial: '{{ serial|default("0") }}'
   roles:
     - { role: decrease/glance,
-        tags: glance}
+        tags: glance,
+        when: groups['decrease']}
 
 - name: Apply role aodh
   gather_facts: false
@@ -97,7 +102,8 @@
   serial: '{{ serial|default("0") }}'
   roles:
     - { role: decrease/aodh,
-        tags: aodh }
+        tags: aodh ,
+        when: groups['decrease']}
 
 - name: Apply role ceilometer
   gather_facts: false
@@ -108,7 +114,8 @@
   serial: '{{ serial|default("0") }}'
   roles:
     - { role: decrease/ceilometer,
-        tags: ceilometer,}
+        tags: ceilometer,
+        when: groups['decrease']}
 
 - name: Apply role gnocchi
   gather_facts: false
@@ -121,7 +128,8 @@
   serial: '{{ serial|default("0") }}'
   roles:
     - { role: decrease/gnocchi,
-        tags: gnocchi,}
+        tags: gnocchi,
+        when: groups['decrease']}
 
 - name: Apply role horizon
   gather_facts: false
@@ -131,7 +139,8 @@
   serial: '{{ serial|default("0") }}'
   roles:
     - { role: decrease/horizon,
-        tags: horizon,}
+        tags: horizon,
+        when: groups['decrease']}
 
 - name: Apply role neutron
   gather_facts: false
@@ -148,7 +157,8 @@
   serial: '{{ serial|default("0") }}'
   roles:
     - { role: decrease/neutron,
-        tags: neutron}
+        tags: neutron,
+        when: groups['decrease']}
 
 - name: Apply role keystone
   gather_facts: false
@@ -156,7 +166,8 @@
   serial: '{{ serial|default("0") }}'
   roles:
     - { role: decrease/keystone,
-        tags: keystone,}
+        tags: keystone,
+        when: groups['decrease']}
 
 - name: Apply role memcached
   gather_facts: false
@@ -164,7 +175,8 @@
   serial: '{{ serial|default("0") }}'
   roles:
     - { role: decrease/memcached,
-        tags: [memcache, memcached],}
+        tags: [memcache, memcached],
+        when: groups['decrease']}
 
 - name: Apply role grafana
   gather_facts: false
@@ -174,7 +186,8 @@
   serial: '{{ serial|default("0") }}'
   roles:
     - { role: decrease/grafana,
-        tags: grafana,}
+        tags: grafana,
+        when: groups['decrease']}
 
 - name: Apply role openvswitch
   hosts:
@@ -182,7 +195,8 @@
     - decrease
   roles:
     - { role: decrease/openvswitch,
-        tags: openvswitch,}
+        tags: openvswitch,
+        when: groups['decrease']}
 
 - name: Apply role rabbitmq
   gather_facts: false
@@ -191,7 +205,8 @@
     - decrease
   roles:
     - { role: decrease/rabbitmq,
-        tags: rabbitmq}
+        tags: rabbitmq,
+        when: groups['decrease']}
 
 - name: Apply role mariadb
   gather_facts: false
@@ -200,7 +215,8 @@
     - decrease
   roles:
     - { role: decrease/mariadb,
-        tags: mariadb}
+        tags: mariadb,
+        when: groups['decrease']}
 
 - name: Apply role ceph mon
   gather_facts: false
@@ -213,14 +229,24 @@
   serial: '{{ serial|default("0") }}'
   roles:
     - { role: decrease/ceph/mon,
-        tags: ceph,}
-  
-- name: Apply role mariadb
+        tags: ceph,
+        when: groups['decrease']}
+
+- name: Apply ceph osd haproxy
+  gather_facts: false
+  hosts:
+    - storage
+  roles:
+    - { role: decrease/ceph/osd,
+        tags: ceph_osd,}
+
+- name: Apply role common
   gather_facts: false
   hosts:
     - decrease
   roles:
     - { role: decrease/common,
-        tags: common}
+        tags: common,
+        when: groups['decrease']}
 
 

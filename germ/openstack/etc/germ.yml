@@ -1,6 +1,4 @@
 # for deploy
-
-
 ---
 deploy_ip: '1.0.41.21'
 deploy_host: 'deploy.dire.com'
@@ -64,3 +62,7 @@ prometheus_cadvisor_tag: "rocky"
 prometheus_alertmanager_tag: "rocky"
 
 enable_prometheus: "no"
+
+rollback: False
+out_osds: []
+delete_osds: []
