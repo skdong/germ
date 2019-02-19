@@ -34,7 +34,7 @@
   roles:
     - { role: decrease/haproxy,
         tags: haproxy,
-        when: groups['decrease']}
+        when: groups.decrease}
 
 - name: Apply role nova
   gather_facts: false
@@ -51,7 +51,7 @@
   roles:
     - { role: decrease/nova,
         tags: nova,
-        when: groups['decrease']}
+        when: groups.decrease}
 
 - name: Apply role heat
   gather_facts: false
@@ -64,7 +64,7 @@
   roles:
     - { role: decrease/heat,
         tags: heat,
-        when: groups['decrease']}
+        when: groups.decrease}
 
 - name: Apply role cinder
   gather_facts: false
@@ -79,7 +79,7 @@
   roles:
     - { role: decrease/cinder,
         tags: cinder,
-        when: groups['decrease']}
+        when: groups.decrease}
 
 - name: Apply role glance
   gather_facts: false
@@ -92,7 +92,7 @@
   roles:
     - { role: decrease/glance,
         tags: glance,
-        when: groups['decrease']}
+        when: groups.decrease}
 
 - name: Apply role aodh
   gather_facts: false
@@ -103,7 +103,7 @@
   roles:
     - { role: decrease/aodh,
         tags: aodh ,
-        when: groups['decrease']}
+        when: groups.decrease}
 
 - name: Apply role ceilometer
   gather_facts: false
@@ -115,7 +115,7 @@
   roles:
     - { role: decrease/ceilometer,
         tags: ceilometer,
-        when: groups['decrease']}
+        when: groups.decrease}
 
 - name: Apply role gnocchi
   gather_facts: false
@@ -129,7 +129,7 @@
   roles:
     - { role: decrease/gnocchi,
         tags: gnocchi,
-        when: groups['decrease']}
+        when: groups.decrease}
 
 - name: Apply role horizon
   gather_facts: false
@@ -140,7 +140,7 @@
   roles:
     - { role: decrease/horizon,
         tags: horizon,
-        when: groups['decrease']}
+        when: groups.decrease}
 
 - name: Apply role neutron
   gather_facts: false
@@ -158,7 +158,7 @@
   roles:
     - { role: decrease/neutron,
         tags: neutron,
-        when: groups['decrease']}
+        when: groups.decrease}
 
 - name: Apply role keystone
   gather_facts: false
@@ -167,7 +167,7 @@
   roles:
     - { role: decrease/keystone,
         tags: keystone,
-        when: groups['decrease']}
+        when: groups.decrease}
 
 - name: Apply role memcached
   gather_facts: false
@@ -176,7 +176,7 @@
   roles:
     - { role: decrease/memcached,
         tags: [memcache, memcached],
-        when: groups['decrease']}
+        when: groups.decrease}
 
 - name: Apply role grafana
   gather_facts: false
@@ -187,7 +187,7 @@
   roles:
     - { role: decrease/grafana,
         tags: grafana,
-        when: groups['decrease']}
+        when: groups.decrease}
 
 - name: Apply role openvswitch
   hosts:
@@ -196,7 +196,7 @@
   roles:
     - { role: decrease/openvswitch,
         tags: openvswitch,
-        when: groups['decrease']}
+        when: groups.decrease}
 
 - name: Apply role rabbitmq
   gather_facts: false
@@ -206,7 +206,7 @@
   roles:
     - { role: decrease/rabbitmq,
         tags: rabbitmq,
-        when: groups['decrease']}
+        when: groups.decrease}
 
 - name: Apply role mariadb
   gather_facts: false
@@ -216,7 +216,7 @@
   roles:
     - { role: decrease/mariadb,
         tags: mariadb,
-        when: groups['decrease']}
+        when: groups.decrease}
 
 - name: Apply role ceph mon
   gather_facts: false
@@ -230,7 +230,7 @@
   roles:
     - { role: decrease/ceph/mon,
         tags: ceph,
-        when: groups['decrease']}
+        when: groups.decrease}
 
 - name: Apply ceph osd haproxy
   gather_facts: false
@@ -247,6 +247,6 @@
   roles:
     - { role: decrease/common,
         tags: common,
-        when: groups['decrease']}
+        when: groups.decrease}
 
 
