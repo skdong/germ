@@ -9,5 +9,5 @@
     - include_vars: ../etc/germ.yml
 
 
-- name: import ceph-deploy playbook
-  import_playbook: deploy.yml
+- name: import alert-deploy playbook
+  import_playbook: alert-deploy.yml
