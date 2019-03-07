@@ -1,18 +1,27 @@
 ---
 stages:
-  - print
+  - build
+  - test
+  - deploy
 
 job:
-  stage: print
+  stage: deploy
   script:
-    - ls
-  before_script:
-    - echo "172.28.0.4  deploy.mydomain.com" >> /etc/hosts
-    - mkdir -p /builds/dire/germ
-  tags: 
+    - cat /etc/hosts
+    - rm -rf /opt/dire/germ
+    - TEMP="${CI_REPOSITORY_URL#*@}"
+    - CI_PROJECT_SSH_URL=${TEMP%%/*}
+    - echo ${CI_PROJECT_SSH_URL}
+    - git clone git@"${CI_PROJECT_SSH_URL}":dire/${CI_PROJECT_NAME}.git /opt/dire/germ
+    - ls /opt/dire
+    - cd /opt/dire/germ
+    - git checkout "${CI_BUILD_REF}"
+    - bash /opt/dire/germ/tools/operate.sh
   except:
     - tags
-  image: dire/ansible_tools:latest
+  image: dire/deploy
+  tags:
+    - dire
 
 variables:
   GIT_STRATEGY: none
