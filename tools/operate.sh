@@ -14,8 +14,47 @@ case "$OPERATION_TYPE" in
     "k8s_scale")
         cd $MODULE/../germ && ansible-playbook kubernetes/site.yml -e @kubernetes/etc/scale.yml
         ;;
+    "k8s_upgrade_etcd")
+        cd $MODULE/../germ && ansible-playbook kubernetes/upgrade.yml --tags=etcd -e @kubernetes/etc/germ.yml
+        ;;
     "k8s_upgrade")
-        cd $MODULE/../germ && ansible-playbook kubernetes/site.yml -e @kubernetes/etc/upgrade.yml
+        cd $MODULE/../germ && ansible-playbook kubernetes/upgrade.yml -e @kubernetes/etc/germ.yml
+        ;;
+    "k8s_monitor")
+        cd $MODULE/../germ && ansible-playbook kubernetes/prometheus/prometheus.yml -e @kubernetes/etc/germ.yml
+        ;;
+    "k8s_alert")
+        cd $MODULE/../germ && ansible-playbook kubernetes/prometheus/alert.yml -e @kubernetes/etc/germ.yml
+        ;;
+    "k8s_recover_node")
+        cd $MODULE/../germ && ansible-playbook kubernetes/kubelet/recover.yml -e @kubernetes/etc/germ.yml
+        ;;
+    "k8s_recover_etcd")
+        cd $MODULE/../germ && ansible-playbook kubernetes/etcd/recover.yml -e @kubernetes/etc/germ.yml
+        ;;
+    "k8s_recover_apiserver")
+        cd $MODULE/../germ && ansible-playbook kubernetes/recover.yml --tags=apiserver -e @kubernetes/etc/germ.yml
+        ;;
+    "k8s_recover_controller")
+        cd $MODULE/../germ && ansible-playbook kubernetes/recover.yml --tags=controller -e @kubernetes/etc/germ.yml
+        ;;
+    "k8s_recover_scheduler")
+        cd $MODULE/../germ && ansible-playbook kubernetes/recover.yml --tags=scheduler -e @kubernetes/etc/germ.yml
+        ;;
+    "k8s_recover_calico")
+        cd $MODULE/../germ && ansible-playbook kubernetes/recover.yml --tags=calico -e @kubernetes/etc/germ.yml
+        ;;
+    "k8s_recover_coredns")
+        cd $MODULE/../germ && ansible-playbook kubernetes/recover.yml --tags=coredns -e @kubernetes/etc/germ.yml
+        ;;
+    "k8s_recover_dashboard")
+        cd $MODULE/../germ && ansible-playbook kubernetes/recover.yml --tags=dashboard -e @kubernetes/etc/germ.yml
+        ;;
+    "k8s_recover_ceph_mon")
+        cd $MODULE/../germ && ansible-playbook kubernetes/recover.yml --tags=ceph_mon -e @kubernetes/etc/germ.yml
+        ;;
+    "k8s_recover_ceph_osd")
+        cd $MODULE/../germ && ansible-playbook kubernetes/recover.yml --tags=ceph_osd -e @kubernetes/etc/germ.yml
         ;;
     "openstack_deploy")
         bash tools/init.sh k8s

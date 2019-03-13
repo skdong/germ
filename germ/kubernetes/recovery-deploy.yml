@@ -1,0 +1,12 @@
+---
+- hosts: kube-master[0]
+  any_errors_fatal: "{{ any_errors_fatal | default(true) }}"
+  roles:
+  - { role: recovery/apiserver, tags: apiserver}
+  - { role: recovery/controller, tags: controller}
+  - { role: recovery/scheduler, tags: scheduler}
+  - { role: recovery/calico, tags: calico}
+  - { role: recovery/coredns, tags: coredns}
+  - { role: recovery/dashboard, tags: dashboard}
+  - { role: recovery/ceph_mon, tags: ceph_mon}
+  - { role: recovery/ceph_osd, tags: ceph_osd}

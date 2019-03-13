@@ -1,0 +1,13 @@
+---
+- name: include options
+  hosts:
+    - all
+  tags: always
+  become: true
+  tasks:
+    - include_vars: etc/globals.yml
+    - include_vars: etc/germ.yml
+
+
+- name: import recovery playbook
+  import_playbook: recovery-deploy.yml

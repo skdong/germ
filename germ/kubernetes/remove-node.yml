@@ -3,18 +3,18 @@
     ansible_ssh_pipelining: true
   gather_facts: true
 
-- hosts: remove-node
-  vars_prompt:
-    name: "delete_nodes_confirmation"
-    prompt: "Are you sure you want to delete nodes state? Type 'yes' to delete nodes."
-    default: "no"
-    private: no
-
-  pre_tasks:
-    - name: check confirmation
-      fail:
-        msg: "Delete nodes confirmation failed"
-      when: delete_nodes_confirmation != "yes"
+#- hosts: remove-node
+#  vars_prompt:
+#    name: "delete_nodes_confirmation"
+#    prompt: "Are you sure you want to delete nodes state? Type 'yes' to delete nodes."
+#    default: "no"
+#    private: no
+#
+#  pre_tasks:
+#    - name: check confirmation
+#      fail:
+#        msg: "Delete nodes confirmation failed"
+#      when: delete_nodes_confirmation != "yes"
 
 - hosts: kube-master
   roles:
