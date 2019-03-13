@@ -7,13 +7,10 @@ stages:
 job:
   stage: deploy
   script:
-    - cat /etc/hosts
     - rm -rf /opt/dire/germ
     - TEMP="${CI_REPOSITORY_URL#*@}"
     - CI_PROJECT_SSH_URL=${TEMP%%/*}
-    - echo ${CI_PROJECT_SSH_URL}
     - git clone git@"${CI_PROJECT_SSH_URL}":dire/${CI_PROJECT_NAME}.git /opt/dire/germ
-    - ls /opt/dire
     - cd /opt/dire/germ
     - git checkout "${CI_BUILD_REF}"
     - bash /opt/dire/germ/tools/operate.sh
