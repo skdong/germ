@@ -9,10 +9,10 @@ case "$OPERATION_TYPE" in
         cd $MODULE/../germ && ansible-playbook kubernetes/site.yml -e @kubernetes/etc/germ.yml
         ;;
     "k8s_decrease")
-        cd $MODULE/../germ && ansible-playbook kubernetes/site.yml -e @kubernetes/etc/decrease.yml
+        cd $MODULE/../germ && ansible-playbook kubernetes/decrease.yml -e @kubernetes/etc/germ.yml
         ;;
     "k8s_scale")
-        cd $MODULE/../germ && ansible-playbook kubernetes/site.yml -e @kubernetes/etc/scale.yml
+        cd $MODULE/../germ && ansible-playbook kubernetes/scale.yml -e @kubernetes/etc/germ.yml
         ;;
     "k8s_upgrade_etcd")
         cd $MODULE/../germ && ansible-playbook kubernetes/upgrade.yml --tags=etcd -e @kubernetes/etc/germ.yml
