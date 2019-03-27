@@ -13,6 +13,7 @@ job:
     - git clone git@"${CI_PROJECT_SSH_URL}":dire/${CI_PROJECT_NAME}.git /opt/dire/germ
     - cd /opt/dire/germ
     - git checkout "${CI_BUILD_REF}"
+    - chmod 0600 /opt/dire/germ/etc/germ/id_rsa
     - bash /opt/dire/germ/tools/operate.sh
   except:
     - tags
