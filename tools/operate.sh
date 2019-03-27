@@ -58,19 +58,19 @@ case "$OPERATION_TYPE" in
         ;;
     "openstack_deploy")
 #        bash tools/init.sh k8s
-        cd $MODULE/../germ && ansible-playbook kubernetes/site.yml -e @openstack/etc/germ.yml
+        cd $MODULE/../germ && ansible-playbook openstack/site.yml -e @openstack/etc/germ.yml
         ;;
     "openstack_decrease")
         cd $MODULE/../germ && ansible-playbook openstack/decrease.yml
         ;;
     "openstack_scale")
-        cd $MODULE/../germ && ansible-playbook kubernetes/site.yml -e @openstack/etc/germ.yml
+        cd $MODULE/../germ && ansible-playbook openstack/site.yml -e @openstack/etc/germ.yml
         ;;
     "openstack_upgrade")
-        cd $MODULE/../germ && ansible-playbook kubernetes/site.yml -e @openstack/etc/germ.yml
+        cd $MODULE/../germ && ansible-playbook openstack/site.yml -e @openstack/etc/germ.yml
         ;;
     "openstack_monitor")
-        cd $MODULE/../germ && ansible-playbook kubernetes/setup-prometheus.yml -e @openstack/etc/germ.yml
+        cd $MODULE/../germ && ansible-playbook openstack/setup-prometheus.yml -e @openstack/etc/germ.yml
         ;;
     *)
         exit 1
