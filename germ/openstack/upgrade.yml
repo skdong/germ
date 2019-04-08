@@ -1,0 +1,32 @@
+---
+- name: include options
+  hosts:
+    - all
+  tags: always
+  become: true
+  tasks:
+    - include_vars: "{{ kolla_path }}/ansible/group_vars/all.yml"
+    - include_vars: etc/globals.yml
+    - include_vars: etc/germ.yml
+    - set_fact:
+        common_run: true
+    - include_vars: '{{ item }}'
+      with_items:
+        - '../../etc/germ/passwords.yml'
+    - include_vars: '{{ item }}'
+      with_items:
+        - '../../etc/germ/auth.yml'
+
+- name: include options
+  hosts:
+    - all
+    - localhost
+  tags: always
+  gather_facts: false
+  tasks:
+    - include_vars: '{{ item }}'
+      with_items:
+        - '../etc/germ/passwords.yml'
+
+- name: import upgrade-cluster playbook
+  import_playbook: upgrade-cluster.yml

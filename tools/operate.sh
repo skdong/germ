@@ -67,7 +67,37 @@ case "$OPERATION_TYPE" in
         cd $MODULE/../germ && ansible-playbook openstack/site.yml -e @openstack/etc/germ.yml
         ;;
     "openstack_upgrade")
-        cd $MODULE/../germ && ansible-playbook openstack/site.yml -e @openstack/etc/germ.yml
+        cd $MODULE/../germ && ansible-playbook openstack/upgrade.yml -e @openstack/etc/germ.yml
+        ;;
+    "openstack_upgrade_aodh")
+        cd $MODULE/../germ && ansible-playbook openstack/upgrade.yml --tags=aodh -e @openstack/etc/germ.yml
+        ;;
+    "openstack_upgrade_heat")
+        cd $MODULE/../germ && ansible-playbook openstack/upgrade.yml --tags=heat -e @openstack/etc/germ.yml
+        ;;
+    "openstack_upgrade_horizon")
+        cd $MODULE/../germ && ansible-playbook openstack/upgrade.yml --tags=horizon -e @openstack/etc/germ.yml
+        ;;
+    "openstack_upgrade_ceilometer")
+        cd $MODULE/../germ && ansible-playbook openstack/upgrade.yml --tags=ceilometer -e @openstack/etc/germ.yml
+        ;;
+    "openstack_upgrade_neutron")
+        cd $MODULE/../germ && ansible-playbook openstack/upgrade.yml --tags=neutron -e @openstack/etc/germ.yml
+        ;;
+    "openstack_upgrade_keystone")
+        cd $MODULE/../germ && ansible-playbook openstack/upgrade.yml --tags=keystone -e @openstack/etc/germ.yml
+        ;;
+    "openstack_upgrade_nova")
+        cd $MODULE/../germ && ansible-playbook openstack/upgrade.yml --tags=nova -e @openstack/etc/germ.yml
+        ;;
+    "openstack_upgrade_glance")
+        cd $MODULE/../germ && ansible-playbook openstack/upgrade.yml --tags=glance -e @openstack/etc/germ.yml
+        ;;
+    "openstack_upgrade_gnocchi")
+        cd $MODULE/../germ && ansible-playbook openstack/upgrade.yml --tags=gnocchi -e @openstack/etc/germ.yml
+        ;;
+    "openstack_upgrade_cinder")
+        cd $MODULE/../germ && ansible-playbook openstack/upgrade.yml --tags=cinder -e @openstack/etc/germ.yml
         ;;
     "openstack_monitor")
         cd $MODULE/../germ && ansible-playbook openstack/setup-prometheus.yml -e @openstack/etc/germ.yml

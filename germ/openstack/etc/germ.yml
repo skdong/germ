@@ -66,3 +66,18 @@ enable_prometheus: "no"
 rollback: False
 out_osds: []
 delete_osds: []
+
+aodh_tag: "queens"
+heat_tag: "queens"
+horizon_tag: "queens"
+ceilometer_tag: "queens"
+neutron_tag: "queens"
+keystone_tag: "queens"
+nova_tag: "queens"
+glance_tag: "queens"
+gnocchi_tag: "queens"
+cinder_tag: "queens"
+
+
+keystone_token_provider: "fernet"
+
