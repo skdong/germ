@@ -40,6 +40,15 @@
         tags: keystone,
         when: enable_keystone | bool }
 
+- name: Set fact action value
+  hosts:
+    - all
+  tags: always
+  become: true
+  tasks:
+    - set_fact:
+        action: "upgrade"
+
 - name: Apply role glance
   gather_facts: false
   hosts:
