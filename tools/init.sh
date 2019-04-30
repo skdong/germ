@@ -8,6 +8,7 @@ case "$1" in
         ;;
     "openstack")
         cp $MODULE/../germ/ansible-openstack.cfg $MODULE/../germ/ansible.cfg
+        ansible-playbook $MODULE/openrc.yml -e @$MODULE/../germ/openstack/etc/germ.yml
         ;;
     *)
         echo "Parameter error.For example: k8s or openstack"

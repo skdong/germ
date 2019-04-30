@@ -13,5 +13,5 @@
 
 - import_playbook: '{{kolla_path}}/ansible/site.yml'
 
-- import_playbook: post-play.yml
-  tags: post-play
+#- import_playbook: post-play.yml
+#  tags: post-play
