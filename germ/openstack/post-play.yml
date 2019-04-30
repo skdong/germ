@@ -1,2 +1,9 @@
 ---
+- name: include options
+  hosts: localhost
+  tags: always
+  become: true
+  tasks:
+    - include_vars: "{{ germ_path }}/etc/germ/passwords.yml"
+
 - import_playbook: '{{kolla_path}}/ansible/post-deploy.yml'
