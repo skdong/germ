@@ -38,7 +38,6 @@ kolla_base_distro: "ubuntu"
 # Valid option is Docker repository tag
 openstack_release: "queens"
 
-docker_registry: "{{deploy_host}}"
 docker_namespace: "kolla"
 docker_registry_username: "admin"
 docker_registry_password: "admin123"
