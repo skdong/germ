@@ -4,7 +4,7 @@ deploy_ip: '1.0.41.21'
 deploy_host: 'deploy.dire.com'
 
 docker_registry: "{{deploy_host}}"
-
+docker_hub_ip: '10.0.35.21'
 external_ntp_servers:
   - 0.pool.ntp.org
   - 1.pool.ntp.org
