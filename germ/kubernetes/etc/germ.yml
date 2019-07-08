@@ -3,8 +3,10 @@
 deploy_ip: '10.0.35.21'
 cluster_domain: sinnet.com.cn
 deploy_host: 'deploy.{{cluster_domain}}'
-docker_registry: "{{deploy_host}}"
 
+docker_registry: "{{deploy_host}}"
+docker_registry_username: "admin"
+docker_registry_password: "YPpDlZvnoMHCPISd4wlc6vK8"
 deploy_container_engine: false
 
 kube_image_repo: "{{ deploy_host }}/google-containers"
