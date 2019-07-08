@@ -25,11 +25,3 @@ images:
   ceph_config_helper: registry.test.oceanstack.slancer.com/ceph/ceph-config-helper:v1.7.5
   rbd_provisioner: registry.test.oceanstack.slancer.com/ceph/rbd-provisioner:v0.1.1
   minimal: registry.test.oceanstack.slancer.com/ceph/alpine:latest
-
-#docker.io/alpine:latest
-#docker.io/ceph/daemon:tag-build-master-luminous-ubuntu-16.04
-#docker.io/kolla/ubuntu-source-heat-engine:3.0.3
-#docker.io/kolla/ubuntu-source-kubernetes-entrypoint:4.0.0
-#docker.io/port/ceph-config-helper:v1.7.5
-#quay.io/external_storage/rbd-provisioner:v0.1.1
-
