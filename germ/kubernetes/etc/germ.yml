@@ -93,6 +93,7 @@ nginx_image_repo: "{{ docker_registry }}/hub/nginx"
 dnsautoscaler_image_repo: "{{ docker_registry }}/k8s/cluster-proportional-autoscaler-{{ image_arch }}"
 helm_image_repo: "{{ docker_registry }}/k8s/k8s-helm"
 tiller_image_repo: "{{ docker_registry }}/k8s/tiller"
+ingress_nginx_controller_image_repo: "{{ docker_registry }}/k8s/nginx-ingress-controller"
 
 kubeadm_download_url: "http://{{ docker_registry }}/repository/kubernetes-release/release/{{ kubeadm_version }}/bin/linux/{{ image_arch }}/kubeadm"
 hyperkube_download_url: "http://{{ docker_registry }}/repository/kubernetes-release/release/{{ kube_version }}/bin/linux/{{ image_arch }}/hyperkube"
