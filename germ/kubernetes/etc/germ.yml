@@ -2,7 +2,7 @@
 
 deploy_ip: '10.0.35.21'
 cluster_domain: dire.com
-deploy_host: 'deploy.{{ cluster_domain }}'
+deploy_host: 'deploy.{{cluster_domain}}'
 
 external_docker_registry_enabled: false
 docker_registry: "{{ deploy_host }}"
@@ -10,6 +10,10 @@ docker_registry_ip: '{{ deploy_ip }}'
 docker_registry_username: "admin"
 docker_registry_password: "admin123"
 docker_registry_crt_name: "keystore.crt"
+deploy_container_engine: false
+
+
+kube_image_repo: "{{ deploy_host }}/google-containers"
 
 external_ntp_servers:
   - 0.pool.ntp.org
@@ -23,10 +27,11 @@ name_servers:
 reset_network_force: true
 
 ## Change this to use another Kubernetes version, e.g. a current beta release
-kube_version: v1.11.1
+kube_version: v1.14.3
+kubeadm_version: "{{ kube_version }}"
+etcd_version: v3.2.26
 
-etcd_version: v3.2.4
-
+kube_network_plugin: calico
 # Kubernetes internal network for services, unused block of space.
 kube_service_addresses: 10.233.0.0/18
 
@@ -59,7 +64,7 @@ external_nameservers:
 # Helm deployment
 helm_enabled: true
 helm_stable_repo_url: "http://{{ deploy_host }}/repository/helm/"
-helm_version: "v2.9.1"
+helm_version: "v2.13.1"
 
 kubelet_authentication_token_webhook: true
 
@@ -70,3 +75,31 @@ work_space: '/opt/dire'
 steam_path: '{{work_space}}/steam'
 kubespray_path: '{{work_space}}/kubespray'
 
+## Settings for containerized control plane (etcd/kubelet/secrets)
+etcd_deployment_type: docker
+kubelet_deployment_type: host
+helm_deployment_type: host
+
+# Arch of Docker images and needed packages
+image_arch: 'amd64'
+calico_ctl_version: "v3.4.4"
+cni_version: "v0.6.0"
+
+coredns_image_repo: "{{ docker_registry }}/coredns/coredns"
+nodelocaldns_image_repo: "{{ docker_registry }}/k8s/k8s-dns-node-cache"
+etcd_image_repo: "{{ docker_registry }}/coreos/etcd"
+dashboard_image_repo: "{{ docker_registry }}/google_containers/kubernetes-dashboard-{{ image_arch }}"
+calico_node_image_repo: "{{ docker_registry }}/calico/node"
+calico_cni_image_repo: "{{ docker_registry }}/calico/cni"
+calico_policy_image_repo: "{{ docker_registry }}/calico/kube-controllers"
+pod_infra_image_repo: "{{ docker_registry }}/google_containers/pause-{{ image_arch }}"
+nginx_image_repo: "{{ docker_registry }}/hub/nginx"
+dnsautoscaler_image_repo: "{{ docker_registry }}/k8s/cluster-proportional-autoscaler-{{ image_arch }}"
+helm_image_repo: "{{ docker_registry }}/k8s/k8s-helm"
+tiller_image_repo: "{{ docker_registry }}/k8s/tiller"
+ingress_nginx_controller_image_repo: "{{ docker_registry }}/k8s/nginx-ingress-controller"
+
+kubeadm_download_url: "http://{{ docker_registry }}/repository/files/{{ kube_version }}/kubeadm"
+hyperkube_download_url: "http://{{ docker_registry }}/repository/files/{{ kube_version }}/hyperkube"
+calicoctl_download_url: "http://{{ docker_registry }}/repository/files/{{ kube_version }}/calicoctl-linux-{{ image_arch }}"
+cni_download_url: "http://{{ docker_registry }}/repository/files/{{ kube_version }}/cni-plugins-{{ image_arch }}-{{ cni_version }}.tgz"
