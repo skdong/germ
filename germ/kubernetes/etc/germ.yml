@@ -1,13 +1,16 @@
 # for deploy
 
 deploy_ip: '10.0.35.21'
-cluster_domain: mydomain.com
-docker_registry: "{{deploy_host}}"
-docker_hub_ip: '10.0.35.21'
-docker_namespace: "kolla"
+cluster_domain: dire.com
+deploy_host: 'deploy.{{ cluster_domain }}'
+
+external_docker_registry_enabled: false
+docker_registry: "{{ deploy_host }}"
+docker_registry_ip: '{{ deploy_ip }}'
 docker_registry_username: "admin"
 docker_registry_password: "admin123"
-deploy_host: 'deploy.{{cluster_domain}}'
+docker_registry_crt_name: "keystore.crt"
+
 external_ntp_servers:
   - 0.pool.ntp.org
   - 1.pool.ntp.org
@@ -20,7 +23,6 @@ name_servers:
 reset_network_force: true
 
 ## Change this to use another Kubernetes version, e.g. a current beta release
-#kube_version: v1.9.5
 kube_version: v1.11.1
 
 etcd_version: v3.2.4
