@@ -1,12 +1,8 @@
 # for deploy
 
 deploy_ip: '10.0.35.21'
-cluster_domain: sinnet.com.cn
-deploy_host: 'deploy.{{cluster_domain}}'
-
-docker_registry: "{{deploy_host}}"
 cluster_domain: dire.com
-deploy_host: 'deploy.{{ cluster_domain }}'
+deploy_host: 'deploy.{{cluster_domain}}'
 
 external_docker_registry_enabled: false
 docker_registry: "{{ deploy_host }}"
@@ -14,9 +10,8 @@ docker_registry_ip: '{{ deploy_ip }}'
 docker_registry_username: "admin"
 docker_registry_password: "admin123"
 docker_registry_crt_name: "keystore.crt"
-
-docker_registry_password: "YPpDlZvnoMHCPISd4wlc6vK8"
 deploy_container_engine: false
+
 
 kube_image_repo: "{{ deploy_host }}/google-containers"
 
